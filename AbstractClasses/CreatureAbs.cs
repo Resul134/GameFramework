@@ -9,7 +9,7 @@ using LibMandatory.States;
 
 namespace LibMandatory.AbstractClasses
 {
-    public abstract class CreatureAbs : ICreature
+    public abstract class CreatureAbs : IGameObject
     {
 
  

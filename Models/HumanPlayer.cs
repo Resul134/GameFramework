@@ -9,7 +9,7 @@ using LibMandatory.States;
 
 namespace LibMandatory.Models
 {
-    public abstract class HumanPlayer : CreatureAbs
+    public class HumanPlayer : CreatureAbs
     {
         public HumanPlayer(string desctription, double hitpoints, Weapon weapon, Armor armor, int fixedPositionX, int fixedPositionY, TypeOfAttack attackType) : base(desctription, hitpoints, weapon, armor, fixedPositionX, fixedPositionY, attackType)
         {
