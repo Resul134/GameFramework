@@ -12,18 +12,18 @@ namespace LibMandatory.Models
 {
     public class Board : IGameObject
     {
-        public int PositionX { get; set; }
-        public int PositionY { get; set; }
-        public string Name { get; set; }
+        public int FixedPositionX { get; set; }
+        public int FixedPositionY { get; set; }
+        public string Description { get; set; }
         private List<Creatures> creatures;
         private List<Weapon> weapons;
         Random rand = new Random();
 
         public Board(int positionX, int positionY, string name)
         {
-            PositionX = positionX;
-            PositionY = PositionY;
-            Name = name;
+            FixedPositionX = positionX;
+            FixedPositionY = positionY;
+            Description = name;
 
 
         }
