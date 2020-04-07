@@ -132,7 +132,7 @@ namespace LibMandatory.Models
 
         }
 
-        public void Action(World map)
+        public void Event(World map)
         {
             PlayerMovements(map);
         }
