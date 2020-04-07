@@ -30,20 +30,24 @@ namespace LibMandatory.Models
 
         public IGameObject[,] makeMap(int height, int width)
         {
-            IGameObject[,] map = new IGameObject[height,width];
+            return MakeMap(height, width);
+        }
+
+        private static IGameObject[,] MakeMap(int height, int width)
+        {
+            IGameObject[,] map = new IGameObject[height, width];
 
 
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
                 {
-                    map[i,j] = new Board(i,j,"Stormwind");
+                    map[i, j] = new Board(i, j, "Stormwind");
                 }
             }
 
             return map;
         }
-
 
 
         public void PrintMap(List<Creatures> Creatures)
