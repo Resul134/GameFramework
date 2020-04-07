@@ -16,6 +16,7 @@ namespace LibMandatory.Models
         public int Height { get; set; }
         public int Width { get; set; }
         public IGameObject[,] Environment { get; set; }
+        private HumanPlayer player { get; set; }
         
 
 

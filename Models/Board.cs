@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LibMandatory.Factories;
+using LibMandatory.Interfaces;
 using LibMandatory.Items;
 using LibMandatory.States;
 
 namespace LibMandatory.Models
 {
-    public class Board
+    public class Board : IGameObject
     {
         public int PositionX { get; set; }
         public int PositionY { get; set; }
