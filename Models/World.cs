@@ -16,6 +16,7 @@ namespace LibMandatory.Models
         public int Height { get; set; }
         public int Width { get; set; }
         public IGameObject[,] Environment { get; set; }
+        
 
 
         public World(IGameObject[,] environment)
@@ -25,6 +26,22 @@ namespace LibMandatory.Models
             Height = environment.GetLength(0);
             Width = environment.GetLength(1);
            
+        }
+
+        public IGameObject[,] makeMap(int height, int width)
+        {
+            IGameObject[,] map = new IGameObject[height,width];
+
+
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    map[i,j] = new Board(i,j,"Stormwind");
+                }
+            }
+
+            return map;
         }
 
 
@@ -84,4 +101,4 @@ namespace LibMandatory.Models
 
 
 }
-}
+
