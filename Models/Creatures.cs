@@ -116,13 +116,13 @@ namespace LibMandatory.Models
             }
             if (Console.ReadKey().Key == ConsoleKey.S)
             {
-                if (FixedPositionX - 1 != environment.Height) FixedPositionX -= 1;
+                if (FixedPositionX - 1 != environment.heigthY) FixedPositionX -= 1;
                 else PlayerMovements(environment);
 
             }
             if (Console.ReadKey().Key == ConsoleKey.D)
             {
-                if (FixedPositionX - 1 != environment.Height) FixedPositionX -= 1;
+                if (FixedPositionX - 1 != environment.heigthY) FixedPositionX -= 1;
                 else PlayerMovements(environment);
 
             }

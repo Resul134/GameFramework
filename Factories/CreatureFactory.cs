@@ -17,5 +17,7 @@ namespace LibMandatory.Factories
             Creatures creature =  new Creatures(positionX, positionY, weapon, armor, attackType);
             return creature;
         }
+
+        
     }
 }
