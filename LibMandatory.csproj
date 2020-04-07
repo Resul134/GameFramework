@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractClasses\CreatureAbs.cs" />
-    <Compile Include="AbstractClasses\WorldAbs.cs" />
     <Compile Include="Factories\ArmorFactory.cs" />
     <Compile Include="Factories\CreatureFactory.cs" />
     <Compile Include="Factories\WeaponFactory.cs" />
@@ -51,6 +50,7 @@
     <Compile Include="Interfaces\IGameObject.cs" />
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\Weapon.cs" />
+    <Compile Include="Models\Board.cs" />
     <Compile Include="Models\Creatures.cs" />
     <Compile Include="Models\HumanPlayer.cs" />
     <Compile Include="Models\World.cs" />
