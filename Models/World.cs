@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using LibMandatory.AbstractClasses;
 using LibMandatory.Factories;
 using LibMandatory.Interfaces;
 using LibMandatory.Items;
@@ -29,7 +30,7 @@ namespace LibMandatory.Models
 
 
 
-        public void PrintMap(List<Creatures> Creatures)
+        public void PrintMap(List<CreatureAbs> Creatures)
         {
             var printMap = GameObjects(Creatures);
 
@@ -66,7 +67,7 @@ namespace LibMandatory.Models
             }
         }
 
-        private IGameObject[,] GameObjects(List<Creatures> Creatures)
+        private IGameObject[,] GameObjects(List<CreatureAbs> Creatures)
         {
             Console.Clear();
             IGameObject[,] printMap = (IGameObject[,]) Environment.Clone();
