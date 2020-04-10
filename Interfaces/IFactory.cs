@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace LibMandatory.Interfaces
 {
-    public class IFactory
+    public interface IFactory
     {
+        
     }
 }
