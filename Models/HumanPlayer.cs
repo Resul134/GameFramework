@@ -18,7 +18,7 @@ namespace LibMandatory.Models
             StateOfLife = LivingState.Alive;
         }
 
-
+        //Unfinished
         public double AttackCreature(HumanPlayer player, CreatureAbs creatureOP)
         {
             if (creatureOP.IsDead == false && player.IsDead == false)
