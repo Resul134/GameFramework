@@ -23,21 +23,21 @@ namespace LibMandatory.Models
 
 
 
-        public double AttackPlayer(CreatureAbs creatureOP, HumanPlayer player)
+        public double AttackPlayer(World mapPlayer)
         {
-            if (creatureOP.IsDead == false && player.IsDead == false)  
+            if (IsDead == false)  
             {
-                if (creatureOP.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Melee)
+                if (Weapon.Damage < mapPlayer.Player.hitPoints && AttackType == TypeOfAttack.Melee)
                 {
-                    return player.hitPoints = recieveDamage(creatureOP.Weapon.Damage, TypeOfAttack.Melee);
+                    return mapPlayer.Player.hitPoints = recieveDamage(Weapon.Damage, TypeOfAttack.Melee);
                 }
-                if (creatureOP.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Magic)
+                if (Weapon.Damage < mapPlayer.Player.hitPoints && AttackType == TypeOfAttack.Magic)
                 {
-                    return player.hitPoints = recieveDamage(creatureOP.Weapon.Damage, TypeOfAttack.Magic);
+                    return mapPlayer.Player.hitPoints = recieveDamage(Weapon.Damage, TypeOfAttack.Magic);
                 }
-                if (creatureOP.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Ranged)
+                if (Weapon.Damage < mapPlayer.Player.hitPoints && AttackType == TypeOfAttack.Ranged)
                 {
-                    return player.hitPoints = recieveDamage(creatureOP.Weapon.Damage, TypeOfAttack.Ranged);
+                    return mapPlayer.Player.hitPoints = recieveDamage(Weapon.Damage, TypeOfAttack.Ranged);
                 }
             }
 
@@ -99,14 +99,21 @@ namespace LibMandatory.Models
             return creatureRandomMove(environment);
         }
 
-        private bool creatureRandomMove(World environment)
+        public bool creatureRandomMove(World environment)
+        {
+            movementHandler();
+
+            return true;
+        }
+
+        private void movementHandler()
         {
             Random rand = new Random();
             int newPosX = FixedPositionX;
             int newPosY = FixedPositionY;
 
             var y = rand.Next(1, 4);
-            
+
 
             switch (y)
             {
@@ -122,21 +129,7 @@ namespace LibMandatory.Models
                 case 4:
                     newPosX--;
                     break;
-
             }
-
-            return true;
-
-
-
-
-
-
         }
-
-
-
-
-
     }
 }

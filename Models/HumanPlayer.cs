@@ -112,13 +112,21 @@ namespace LibMandatory.Models
             }
         }
 
-        public void Loot(Armor newArmor)
+        public void LootArmor(Armor newArmor)
         {
             if (newArmor.Defense > ArmorType.Defense)
             {
                 ArmorType = newArmor;
             }
 
+        }
+
+        public void LootPotion(Potion potion, double Modifier)
+        {
+            if (FixedPositionX == potion.FixedPositionX && FixedPositionY == potion.FixedPositionY)
+            {
+                hitPoints += Modifier;
+            }
         }
 
         public void Action(World map, Direction direction)

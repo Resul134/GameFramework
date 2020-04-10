@@ -10,26 +10,29 @@ namespace LibMandatory.Items
 {
     public class Armor : IGameObject
     {
-        public int fixedPositionX { get; set; }
-        public int fixedPositionY { get; set; }
+      
 
 
         public ArmorType TypeOfArmor { get; set; }
         public string ArmorName { get; set; }
         public double Defense { get; set; }
         public TypeOfAttack attackType { get; set; }
+        public int FixedPositionX { get; set; }
+        public int FixedPositionY { get; set; }
 
 
 
 
-        public Armor(ArmorType armor, string armorname, double defense)
+        public Armor(ArmorType armor, string armorname, double defense, int positionX, int positionY)
         {
             TypeOfArmor = armor;
             ArmorName = armorname;
             Defense = defense;
             attackType = (TypeOfAttack) adjustResistances(armor);
+            FixedPositionX = positionX;
+            FixedPositionY = positionY;
 
-            
+
         }
 
 
@@ -90,6 +93,13 @@ namespace LibMandatory.Items
 
             return Defense;
         }
-  
+
+
+        public override string ToString()
+        {
+            return $"{nameof(TypeOfArmor)}: {TypeOfArmor}, {nameof(ArmorName)}: {ArmorName}, {nameof(Defense)}: {Defense}";
+        }
+
+
     }
 }

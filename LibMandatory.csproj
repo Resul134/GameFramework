@@ -44,15 +44,16 @@
     <Compile Include="AbstractClasses\CreatureAbs.cs" />
     <Compile Include="Factories\ArmorFactory.cs" />
     <Compile Include="Factories\CreatureFactory.cs" />
+    <Compile Include="Factories\PotionFactory.cs" />
     <Compile Include="Factories\WeaponFactory.cs" />
     <Compile Include="Interfaces\ICreature.cs" />
     <Compile Include="Interfaces\IFactory.cs" />
     <Compile Include="Interfaces\IGameObject.cs" />
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\Weapon.cs" />
-    <Compile Include="Models\Board.cs" />
     <Compile Include="Models\Creatures.cs" />
     <Compile Include="Models\HumanPlayer.cs" />
+    <Compile Include="Models\Potion.cs" />
     <Compile Include="Models\World.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="States\ArmorType.cs" />

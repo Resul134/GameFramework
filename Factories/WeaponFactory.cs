@@ -10,9 +10,9 @@ namespace LibMandatory.Factories
 {
     public class WeaponFactory
     {
-        public Weapon GenerateWeapon(TypeOfAttack attackType, double damage, string description)
+        public Weapon GenerateWeapon(TypeOfAttack attackType, double damage, string description, int positinX, int positionY)
         {
-            Weapon weapon = new Weapon(attackType, damage, description);
+            Weapon weapon = new Weapon(attackType, damage, description, positinX, positionY);
             return weapon;
         }
     }

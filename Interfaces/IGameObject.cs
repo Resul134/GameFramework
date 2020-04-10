@@ -8,7 +8,6 @@ namespace LibMandatory.Interfaces
 {
     public interface IGameObject
     {
-        string Description { get; set; }
         int FixedPositionX { get; set; }
         int FixedPositionY { get; set; }
 

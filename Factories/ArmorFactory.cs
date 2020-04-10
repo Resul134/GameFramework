@@ -10,9 +10,9 @@ namespace LibMandatory.Factories
 {
     public class ArmorFactory
     {
-        public Armor getTypeOfArmor(ArmorType armorType, string armorname, double defense)
+        public Armor getTypeOfArmor(ArmorType armorType, string armorname, double defense, int positionX, int positionY)
         {
-            Armor createArmor = new Armor(armorType, armorname, defense);
+            Armor createArmor = new Armor(armorType, armorname, defense, positionX, positionY);
             return createArmor;
         }
 
