@@ -94,19 +94,19 @@ namespace LibMandatory.Models
 
         }
 
-        public bool creatureMoverandom(World environment, Direction newDirect = 0)
+        public bool creatureMoverandom(Direction newDirect = 0)
         {
-            return creatureRandomMove(environment);
+            return creatureRandomMove();
         }
 
-        public bool creatureRandomMove(World environment)
+        private bool creatureRandomMove()
         {
-            movementHandler();
+            handleMovements();
 
             return true;
         }
 
-        private void movementHandler()
+        private void handleMovements()
         {
             Random rand = new Random();
             int newPosX = FixedPositionX;
