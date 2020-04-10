@@ -43,7 +43,7 @@ namespace LibMandatory.Items
 
         #endregion
 
-        public double CheckWeaponResistanceToArmor(TypeOfAttack attackStyle, ArmorType armorType)
+        public double CheckDamagetoToArmorType(TypeOfAttack attackStyle, ArmorType armorType)
         {
             if (armorType == ArmorType.Plate)
             {
