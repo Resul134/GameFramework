@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LibMandatory.Items;
+using LibMandatory.Models;
 using LibMandatory.States;
 
 namespace LibMandatory.Factories
@@ -15,5 +16,8 @@ namespace LibMandatory.Factories
             Weapon weapon = new Weapon(attackType, damage, description, positinX, positionY);
             return weapon;
         }
+
+
+        
     }
 }

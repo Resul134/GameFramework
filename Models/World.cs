@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
@@ -148,7 +149,7 @@ namespace LibMandatory.Models
         
 
 
-        public void addWeapontoWorld(TypeOfAttack attackType, double damage, string description)
+        public void addWeapontoWorldRandomPosition(TypeOfAttack attackType, double damage, string description)
         {
             Random rand = new Random();
             weaponsList.Add(WeaponFactory.GenerateWeapon(attackType, damage, description,rand.Next(0,7),rand.Next(0,7)));
@@ -171,7 +172,7 @@ namespace LibMandatory.Models
         }
 
 
-        public void addPotionToWorld(string potionName)
+        public void addPotionToWorldRandomPosition(string potionName)
         {
             Random rand = new Random();
             potionList.Add(PotionFactory.makePotions(rand.Next(0, 4), rand.Next(0, 4), potionName));
@@ -181,6 +182,50 @@ namespace LibMandatory.Models
         public void removePotion(Potion potion)
         {
             potionList.Remove(potion);
+        }
+
+
+        public void addCreaturesToWorldRandomPosition(Creatures creature, Weapon weapon, Armor armor, TypeOfAttack attackType)
+        {
+            Random rand = new Random();
+            creatureList.Add(CreatureFactory.makeCreature(rand.Next(0,10), rand.Next(0,12),weapon, armor, attackType ));
+
+        }
+
+        public int removeCreaturFromWorld(int numberOfCreatures)
+        {
+            if (creatureList.Count > 0 && creatureList.Count != 0)
+            {
+                var i = creatureList.Count - numberOfCreatures;
+
+                return i;
+            }
+
+            return creatureList.Count;
+
+
+        }
+
+
+        public void decreaseAllCreaturesHP(int hp)
+        {
+            creatureList.Sum(x => x.CurrentHealth - hp);
+
+        }
+
+
+        public void cursePlayer(HumanPlayer player, double hitPoints)
+        {
+            if (player != null)
+            {
+                foreach (var c in creatureList)
+                {
+                    if (c.AttackType == TypeOfAttack.Magic)
+                    {
+                        player.CurrentHealth -= hitPoints;
+                    }
+                }
+            }
         }
 
     }

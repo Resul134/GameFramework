@@ -49,7 +49,7 @@ namespace LibMandatory.Models
         {
             if (Typeattack == TypeOfAttack.Magic)
             {
-                if (recieveDamage <= 40)
+                if (recieveDamage != 0)
                 {
                     return hitPoints -= recieveDamage;
                 }
@@ -58,7 +58,7 @@ namespace LibMandatory.Models
 
             if (Typeattack == TypeOfAttack.Melee)
             {
-                if (recieveDamage <= 60)
+                if (recieveDamage != 0)
                 {
                     return hitPoints -= recieveDamage;
                 }
@@ -66,7 +66,7 @@ namespace LibMandatory.Models
             }
             if (Typeattack == TypeOfAttack.Ranged)
             {
-                if (recieveDamage <= 50)
+                if (recieveDamage !=  0)
                 {
                     return hitPoints -= recieveDamage;
                 }
