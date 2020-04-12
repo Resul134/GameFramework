@@ -16,8 +16,7 @@ namespace LibMandatory.Models
         public Creatures(int positionX, int positionY, Weapon weaponCreature, Armor armor, TypeOfAttack attackType) : base("Goblin", 120, weaponCreature, armor, positionX, positionY, attackType)
         {
             Direction = Direction.Up;
-            StateOfLife = LivingState.Alive;
-
+            IsDead = false;
         }
         
 
@@ -25,7 +24,7 @@ namespace LibMandatory.Models
 
         public double AttackPlayer(World mapPlayer)
         {
-            if (IsDead == false)  
+            if (IsDead == false && mapPlayer.Player.hitPoints > 0)  
             {
                 if (Weapon.Damage < mapPlayer.Player.hitPoints && AttackType == TypeOfAttack.Melee)
                 {

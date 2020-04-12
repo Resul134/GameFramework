@@ -58,7 +58,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="States\ArmorType.cs" />
     <Compile Include="States\Direction.cs" />
-    <Compile Include="States\LivingState.cs" />
     <Compile Include="States\TypeOfAttack.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -19,17 +19,17 @@ namespace LibMandatory.Models
         public HumanPlayer Player { get; set; }
 
         public List<Weapon> weaponsList { get; set; }
-        public WeaponFactory WeaponFactory { get; set; }
+        public WeaponFactory WeaponFactory = new WeaponFactory();
 
         public List<Armor> armorList { get; set; }
-        public ArmorFactory ArmorFactory { get; set; }
+        public ArmorFactory ArmorFactory = new ArmorFactory();
 
         public List<Potion> potionList { get; set; }
-        public PotionFactory PotionFactory { get; set; }
+        public PotionFactory PotionFactory = new PotionFactory();
 
 
         public List<Creatures> creatureList { get; set; }
-        public CreatureFactory CreatureFactory { get; set; }
+        public CreatureFactory CreatureFactory  = new CreatureFactory();
 
 
         public World(int height, int width)
@@ -40,16 +40,16 @@ namespace LibMandatory.Models
             Player = new HumanPlayer("Arthur", 120, new Weapon(TypeOfAttack.Melee, 50, "sword", -1,-1),
                 new Armor(ArmorType.Plate,"Plate", 30, -1,-1),1,1, TypeOfAttack.Melee  );
             weaponsList = new List<Weapon>();
-            WeaponFactory = new WeaponFactory();
+            
 
             armorList = new List<Armor>();
-            ArmorFactory = new ArmorFactory();
+           
 
             potionList = new List<Potion>();
-            PotionFactory = new PotionFactory();
+            
 
             creatureList = new List<Creatures>();
-            CreatureFactory = new CreatureFactory();
+            
 
             Parallel.Invoke(playerMovementHandler, delegate()
             {

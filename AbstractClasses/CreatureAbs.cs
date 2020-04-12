@@ -25,15 +25,25 @@ namespace LibMandatory.AbstractClasses
         public int FixedPositionX { get; set; }
         public int FixedPositionY { get; set; }
 
-        public bool IsDead
+        public bool IsDead { get; set; }
+
+        private double _currentHealth { get; set; }
+
+
+        public double CurrentHealth
         {
-            get => hitPoints <= 0;
-            set => throw new NotImplementedException();
+            get => _currentHealth;
+            set
+            {
+                if (value <= 0) IsDead = true;
+                _currentHealth = value;
+            }
         }
 
 
         public CreatureAbs(string desctription, double hitpoints, Weapon weapon, Armor armor, int fixedPositionX, int fixedPositionY, TypeOfAttack attackType)
         {
+            CurrentHealth =  hitpoints;
             hitPoints = hitpoints;
             Description = desctription;
             Weapon = weapon;
@@ -42,6 +52,8 @@ namespace LibMandatory.AbstractClasses
 
             FixedPositionX = fixedPositionX;
             FixedPositionY = fixedPositionY;
+
+            IsDead = false;
 
 
         }

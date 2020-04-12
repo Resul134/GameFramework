@@ -15,10 +15,10 @@ namespace LibMandatory.Models
         public HumanPlayer(string desctription, double hitpoints, Weapon weapon, Armor armor, int fixedPositionX, int fixedPositionY, TypeOfAttack attackType) : base(desctription, hitpoints, weapon, armor, fixedPositionX, fixedPositionY, attackType)
         {
             Direction = Direction.Down;
-            StateOfLife = LivingState.Alive;
+            IsDead = false;
         }
 
-        //Unfinished
+        //Unfinished maybe convert method to bool, and check for if hitPoints under 0 return IsDead true?
         public double AttackCreature(HumanPlayer player, CreatureAbs creatureOP)
         {
             if (creatureOP.IsDead == false && player.IsDead == false)
