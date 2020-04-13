@@ -42,7 +42,7 @@ namespace LibMandatory.AbstractClasses
 
         public CreatureAbs(string desctription, double hitpoints, Weapon weapon, Armor armor, int fixedPositionX, int fixedPositionY, TypeOfAttack attackType)
         {
-            CurrentHealth =  hitpoints;
+            CurrentHealth =  hitPoints;
             hitPoints = hitpoints;
             Description = desctription;
             Weapon = weapon;

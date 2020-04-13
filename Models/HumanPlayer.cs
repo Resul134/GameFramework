@@ -16,6 +16,7 @@ namespace LibMandatory.Models
         {
             Direction = Direction.Down;
             IsDead = false;
+            CurrentHealth = 160;
         }
 
         //Unfinished maybe convert method to bool, and check for if hitPoints under 0 return IsDead true?
@@ -25,15 +26,15 @@ namespace LibMandatory.Models
             {
                 if (player.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Melee)
                 {
-                    return creatureOP.hitPoints = recieveDamage(player.Weapon.Damage, TypeOfAttack.Melee);
+                    return creatureOP.CurrentHealth = recieveDamage(player.Weapon.Damage, TypeOfAttack.Melee);
                 }
                 if (player.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Magic)
                 {
-                    return creatureOP.hitPoints = recieveDamage(player.Weapon.Damage, TypeOfAttack.Magic);
+                    return creatureOP.CurrentHealth = recieveDamage(player.Weapon.Damage, TypeOfAttack.Magic);
                 }
                 if (player.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Ranged)
                 {
-                    return creatureOP.hitPoints = recieveDamage(player.Weapon.Damage, TypeOfAttack.Ranged);
+                    return creatureOP.CurrentHealth = recieveDamage(player.Weapon.Damage, TypeOfAttack.Ranged);
                 }
             }
 
@@ -75,9 +76,9 @@ namespace LibMandatory.Models
         {
             if (Typeattack == TypeOfAttack.Magic)
             {
-                if (recieveDamage <= 40)
+                if (recieveDamage != 0)
                 {
-                    return hitPoints -= recieveDamage;
+                    return CurrentHealth -= recieveDamage;
                     
                 }
 
@@ -85,18 +86,18 @@ namespace LibMandatory.Models
 
             if (Typeattack == TypeOfAttack.Melee)
             {
-                if (recieveDamage <= 60)
+                if (recieveDamage != 0)
                 {
-                    return hitPoints -= recieveDamage;
+                    return CurrentHealth -= recieveDamage;
                 }
                 
 
             }
             if (Typeattack == TypeOfAttack.Ranged)
             {
-                if (recieveDamage <= 50)
+                if (recieveDamage != 0)
                 {
-                    return hitPoints -= recieveDamage;
+                    return CurrentHealth -= recieveDamage;
                 }
 
             }
@@ -150,7 +151,7 @@ namespace LibMandatory.Models
 
         public void ResetPlayersHealth()
         {
-            CurrentHealth = 120;
+            CurrentHealth = 160;
         }
 
 

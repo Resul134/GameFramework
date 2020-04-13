@@ -17,6 +17,7 @@ namespace LibMandatory.Models
         {
             Direction = Direction.Up;
             IsDead = false;
+            CurrentHealth = 120;
         }
         
 
@@ -24,19 +25,19 @@ namespace LibMandatory.Models
 
         public double AttackPlayer(World mapPlayer)
         {
-            if (IsDead == false && mapPlayer.Player.hitPoints > 0)  
+            if (IsDead == false && mapPlayer.Player.CurrentHealth > 0)  
             {
-                if (Weapon.Damage < mapPlayer.Player.hitPoints && AttackType == TypeOfAttack.Melee)
+                if (Weapon.Damage < mapPlayer.Player.CurrentHealth && AttackType == TypeOfAttack.Melee)
                 {
-                    return mapPlayer.Player.hitPoints = recieveDamage(Weapon.Damage, TypeOfAttack.Melee);
+                    return mapPlayer.Player.CurrentHealth = recieveDamage(Weapon.Damage, TypeOfAttack.Melee);
                 }
-                if (Weapon.Damage < mapPlayer.Player.hitPoints && AttackType == TypeOfAttack.Magic)
+                if (Weapon.Damage < mapPlayer.Player.CurrentHealth && AttackType == TypeOfAttack.Magic)
                 {
-                    return mapPlayer.Player.hitPoints = recieveDamage(Weapon.Damage, TypeOfAttack.Magic);
+                    return mapPlayer.Player.CurrentHealth = recieveDamage(Weapon.Damage, TypeOfAttack.Magic);
                 }
-                if (Weapon.Damage < mapPlayer.Player.hitPoints && AttackType == TypeOfAttack.Ranged)
+                if (Weapon.Damage < mapPlayer.Player.CurrentHealth && AttackType == TypeOfAttack.Ranged)
                 {
-                    return mapPlayer.Player.hitPoints = recieveDamage(Weapon.Damage, TypeOfAttack.Ranged);
+                    return mapPlayer.Player.CurrentHealth = recieveDamage(Weapon.Damage, TypeOfAttack.Ranged);
                 }
             }
 
