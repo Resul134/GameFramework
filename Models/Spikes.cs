@@ -24,6 +24,22 @@ namespace LibMandatory.Models
         }
 
 
+        //Testing if i can move the methods to it's class
+        public void SpikesEncountered(World player)
+        {
+            if (player != null)
+            {
+                foreach (var s in player.spikeList)
+                {
+                    if (player.Player.FixedPositionX == FixedPositionX && player.Player.FixedPositionY == s.FixedPositionY)
+                    {
+                        player.Player.CurrentHealth -= Damage;
+                    }
+                }
+            }
+        }
+
+
         public override string ToString()
         {
             return $"{nameof(FixedPositionX)}: {FixedPositionX}, {nameof(FixedPositionY)}: {FixedPositionY}, {nameof(Descrtiption)}: {Descrtiption}";

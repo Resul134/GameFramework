@@ -104,6 +104,20 @@ namespace LibMandatory.Models
             return hitPoints;
         }
 
+        //TEST, to see if I can move the methods from world to it's respectable class.
+        public void BuffPlayer_IF_Potion_Encountered(World potion, double healthModifier, double damageModifier)
+        {
+            foreach (var p in potion.potionList)
+            {
+                if (FixedPositionX == p.FixedPositionX && FixedPositionY == p.FixedPositionY)
+                {
+                    CurrentHealth += healthModifier;
+                    Weapon.Damage += damageModifier;
+
+                }
+            }
+        }
+
         public void LootWeapon(Weapon newGear)
         {
             if (newGear.Damage > Weapon.Damage)
