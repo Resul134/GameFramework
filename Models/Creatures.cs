@@ -57,7 +57,7 @@ namespace LibMandatory.Models
             {
                 if (recieveDamage != 0)
                 {
-                    return hitPoints -= recieveDamage;
+                    return CurrentHealth -= recieveDamage;
                 }
  
             }
@@ -66,7 +66,7 @@ namespace LibMandatory.Models
             {
                 if (recieveDamage != 0)
                 {
-                    return hitPoints -= recieveDamage;
+                    return CurrentHealth -= recieveDamage;
                 }
 
             }
@@ -74,7 +74,7 @@ namespace LibMandatory.Models
             {
                 if (recieveDamage !=  0)
                 {
-                    return hitPoints -= recieveDamage;
+                    return CurrentHealth -= recieveDamage;
                 }
 
             }
