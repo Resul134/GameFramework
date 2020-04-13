@@ -115,6 +115,14 @@ namespace LibMandatory.Models
                         }
                     }
 
+                    foreach (var S in spikeList)
+                    {
+                        if (S.FixedPositionX == i && S.FixedPositionY == j)
+                        {
+                            playground[i, j] = 'S';
+                        }
+                    }
+
                 }
             }
 
@@ -216,15 +224,15 @@ namespace LibMandatory.Models
         }
 
 
-        public void CursePlayer(HumanPlayer player, double hitPoints)
+        public void CursePlayer(double hitPoints)
         {
-            if (player != null)
+            if (Player != null)
             {
                 foreach (var c in creatureList)
                 {
                     if (c.AttackType == TypeOfAttack.Magic)
                     {
-                        player.CurrentHealth -= hitPoints;
+                        Player.CurrentHealth -= hitPoints;
                     }
                 }
             }
