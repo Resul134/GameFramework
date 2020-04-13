@@ -46,7 +46,7 @@ namespace LibMandatory.Models
 
         public void resetCreatureHealth()
         {
-            CurrentHealth = 120;
+            hitPoints = 160;
         }
 
         

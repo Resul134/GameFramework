@@ -151,7 +151,7 @@ namespace LibMandatory.Models
 
         public void ResetPlayersHealth()
         {
-            CurrentHealth = 160;
+            hitPoints = 160;
         }
 
 
