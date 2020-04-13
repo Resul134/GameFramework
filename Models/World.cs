@@ -51,11 +51,9 @@ namespace LibMandatory.Models
 
             creatureList = new List<Creatures>();
             
-
-            Parallel.Invoke(playerMovementHandler, delegate()
-            {
-                Console.WriteLine($"playermovement");
-            });
+            Parallel.Invoke((() => new Thread(playerMovementHandler).Start() ));
+               
+            
 
            
         }
@@ -149,50 +147,46 @@ namespace LibMandatory.Models
         
 
 
-        public void addWeapontoWorldRandomPosition(TypeOfAttack attackType, double damage, string description)
+        public void AddWeapontoWorldRandomPosition(TypeOfAttack attackType, double damage, string description, int positionX, int positionY)
         {
-            Random rand = new Random();
-            weaponsList.Add(WeaponFactory.GenerateWeapon(attackType, damage, description,rand.Next(0,7),rand.Next(0,7)));
+            weaponsList.Add(WeaponFactory.GenerateWeapon(attackType, damage, description,positionX,positionY));
         }
 
-        public void removeWeapon(Weapon weapon)
+        public void RemoveWeaponFromWorld(Weapon weapon)
         {
             weaponsList.Remove(weapon);
         }
 
-        public void addArmortoWorld(ArmorType armorType, string armorname, double defense)
+        public void AddArmortoWorld(ArmorType armorType, string armorname, double defense, int positionX, int positionY)
         {
-            Random rand = new Random();
-            armorList.Add(ArmorFactory.getTypeOfArmor(armorType, armorname, defense, rand.Next(0,10),rand.Next(0,10)));
+            armorList.Add(ArmorFactory.getTypeOfArmor(armorType, armorname, defense, positionX,positionY));
         }
 
-        public void removeArmor(Armor armor)
+        public void RemoveArmor(Armor armor)
         {
             armorList.Remove(armor);
         }
 
 
-        public void addPotionToWorldRandomPosition(string potionName)
+        public void AddPotionToWorldRandomPosition(string potionName, int positionX, int positionY)
         {
-            Random rand = new Random();
-            potionList.Add(PotionFactory.makePotions(rand.Next(0, 4), rand.Next(0, 4), potionName));
+            potionList.Add(PotionFactory.makePotions(positionX, positionY, potionName));
         }
 
 
-        public void removePotion(Potion potion)
+        public void RemovePotion(Potion potion)
         {
             potionList.Remove(potion);
         }
 
 
-        public void addCreaturesToWorldRandomPosition(Creatures creature, Weapon weapon, Armor armor, TypeOfAttack attackType)
+        public void AddCreaturesToWorld(Creatures creature, Weapon weapon, Armor armor, TypeOfAttack attackType, int positionX, int positionY)
         {
-            Random rand = new Random();
-            creatureList.Add(CreatureFactory.makeCreature(rand.Next(0,10), rand.Next(0,12),weapon, armor, attackType ));
+            creatureList.Add(CreatureFactory.makeCreature(positionX, positionY,weapon, armor, attackType ));
 
         }
 
-        public int removeCreaturFromWorld(int numberOfCreatures)
+        public int RemoveCreaturFromWorld(int numberOfCreatures)
         {
             if (creatureList.Count > 0 && creatureList.Count != 0)
             {
@@ -207,14 +201,14 @@ namespace LibMandatory.Models
         }
 
 
-        public void decreaseAllCreaturesHP(int hp)
+        public void DecreaseAllCreaturesHP(int hp)
         {
             creatureList.Sum(x => x.CurrentHealth - hp);
 
         }
 
 
-        public void cursePlayer(HumanPlayer player, double hitPoints)
+        public void CursePlayer(HumanPlayer player, double hitPoints)
         {
             if (player != null)
             {
