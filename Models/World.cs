@@ -32,6 +32,9 @@ namespace LibMandatory.Models
         public List<Creatures> creatureList { get; set; }
         public CreatureFactory CreatureFactory  = new CreatureFactory();
 
+        public List<Spikes> spikeList { get; set; }
+        public spikeFactory SpikeFactory = new spikeFactory();
+
 
         public World(int height, int width)
         {
@@ -50,6 +53,11 @@ namespace LibMandatory.Models
             
 
             creatureList = new List<Creatures>();
+
+            spikeList = new List<Spikes>();
+
+
+
             
             Parallel.Invoke((() => new Thread(playerMovementHandler).Start() ));
                
@@ -243,6 +251,37 @@ namespace LibMandatory.Models
                 creatureList.Select(x => x.Description == name);
             }
             
+        }
+
+        public void addSpikes(Spikes spikes)
+        {
+            if (spikes != null)
+            {
+                spikeList.Add(spikes);
+            }
+            
+        }
+
+        public void removeSpikes(Spikes spikes)
+        {
+            if (spikes != null)
+            {
+                spikeList.Remove(spikes);
+            }
+        }
+
+        public void SpikesEncountered(HumanPlayer player)
+        {
+            if (player != null)
+            {
+                foreach (var s in spikeList)
+                {
+                    if (player.FixedPositionX == s.FixedPositionX && player.FixedPositionY == s.FixedPositionY)
+                    {
+                        player.CurrentHealth -= s.Damage;
+                    }
+                }
+            }
         }
 
     }
