@@ -222,6 +222,29 @@ namespace LibMandatory.Models
             }
         }
 
+        public void BuffPlayer_IF_Potion_Encountered(HumanPlayer player, double healthModifier, double damageModifier)
+        {
+            foreach (var p in potionList)
+            {
+                if (player.FixedPositionX == p.FixedPositionX && player.FixedPositionY == p.FixedPositionY)
+                {
+                    player.CurrentHealth += healthModifier;
+                    player.Weapon.Damage += damageModifier;
+
+                }
+            }
+        }
+
+
+        public void SelectCreaturesWithName(string name)
+        {
+            if (name != null)
+            {
+                creatureList.Select(x => x.Description == name);
+            }
+            
+        }
+
     }
 
 
