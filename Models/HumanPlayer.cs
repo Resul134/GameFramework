@@ -134,6 +134,11 @@ namespace LibMandatory.Models
             PlayerMovements(map, direction);
         }
 
+        public void ResetPlayersHealth()
+        {
+            CurrentHealth = 120;
+        }
+
 
         
 

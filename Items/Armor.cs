@@ -31,8 +31,7 @@ namespace LibMandatory.Items
             attackType = (TypeOfAttack) adjustResistances(armor);
             FixedPositionX = positionX;
             FixedPositionY = positionY;
-
-
+            
         }
 
 

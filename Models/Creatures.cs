@@ -43,6 +43,11 @@ namespace LibMandatory.Models
             return 0;
         }
 
+        public void resetCreatureHealth()
+        {
+            CurrentHealth = 120;
+        }
+
         
 
         public double recieveDamage(double recieveDamage, TypeOfAttack Typeattack)

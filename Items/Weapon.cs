@@ -22,6 +22,7 @@ namespace LibMandatory.Items
             _attackResDic = new Dictionary<TypeOfAttack, Armor>();
             FixedPositionY = positionY;
             FixedPositionX = positionX;
+
         }
 
         public Weapon()

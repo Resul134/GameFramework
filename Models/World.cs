@@ -147,7 +147,7 @@ namespace LibMandatory.Models
         
 
 
-        public void AddWeapontoWorldRandomPosition(TypeOfAttack attackType, double damage, string description, int positionX, int positionY)
+        public void AddWeapontoWorld(TypeOfAttack attackType, double damage, string description, int positionX, int positionY)
         {
             weaponsList.Add(WeaponFactory.GenerateWeapon(attackType, damage, description,positionX,positionY));
         }
