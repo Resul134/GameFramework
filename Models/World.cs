@@ -230,14 +230,14 @@ namespace LibMandatory.Models
             }
         }
 
-        public void BuffPlayer_IF_Potion_Encountered(HumanPlayer player, double healthModifier, double damageModifier)
+        public void BuffPlayer_IF_Potion_Encountered(double healthModifier, double damageModifier)
         {
             foreach (var p in potionList)
             {
-                if (player.FixedPositionX == p.FixedPositionX && player.FixedPositionY == p.FixedPositionY)
+                if (Player.FixedPositionX == p.FixedPositionX && Player.FixedPositionY == p.FixedPositionY)
                 {
-                    player.CurrentHealth += healthModifier;
-                    player.Weapon.Damage += damageModifier;
+                    Player.CurrentHealth += healthModifier;
+                    Player.Weapon.Damage += damageModifier;
 
                 }
             }
@@ -270,15 +270,15 @@ namespace LibMandatory.Models
             }
         }
 
-        public void SpikesEncountered(HumanPlayer player)
+        public void SpikesEncountered()
         {
-            if (player != null)
+            if (Player != null)
             {
                 foreach (var s in spikeList)
                 {
-                    if (player.FixedPositionX == s.FixedPositionX && player.FixedPositionY == s.FixedPositionY)
+                    if (Player.FixedPositionX == s.FixedPositionX && Player.FixedPositionY == s.FixedPositionY)
                     {
-                        player.CurrentHealth -= s.Damage;
+                        Player.CurrentHealth -= s.Damage;
                     }
                 }
             }
