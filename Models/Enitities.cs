@@ -13,11 +13,10 @@ namespace LibMandatory.Models
     {
         
 
-        public Enitities(int positionX, int positionY, Weapon weaponCreature, Armor armor, TypeOfAttack attackType) : base("Goblin", 120, weaponCreature, armor, positionX, positionY, attackType)
+        public Enitities(int positionX, int positionY, Weapon weaponCreature, Armor armor, TypeOfAttack attackType, double hp, string name) : base(name, hp, weaponCreature, armor, positionX, positionY, attackType)
         {
             Direction = Direction.Up;
             IsDead = false;
-            CurrentHealth = 120;
         }
         
 
@@ -46,7 +45,7 @@ namespace LibMandatory.Models
 
         public void resetCreatureHealth()
         {
-            hitPoints = 160;
+            hitPoints = 120;
         }
 
         

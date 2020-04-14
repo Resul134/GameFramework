@@ -30,7 +30,7 @@ namespace LibMandatory.Models
         public PotionFactory PotionFactory = new PotionFactory();
 
 
-        public List<EnitityAbs> creatureList { get; set; }
+        public List<Enitities> creatureList { get; set; }
         public CreatureFactory CreatureFactory  = new CreatureFactory();
 
         public List<Spikes> spikeList { get; set; }
@@ -53,7 +53,7 @@ namespace LibMandatory.Models
             potionList = new List<Potion>();
             
 
-            creatureList = new List<EnitityAbs>();
+            creatureList = new List<Enitities>();
 
             spikeList = new List<Spikes>();
 
@@ -197,7 +197,7 @@ namespace LibMandatory.Models
         }
 
 
-        public void AddCreaturesToWorld(EnitityAbs enitity, Weapon weapon, Armor armor, TypeOfAttack attackType, int positionX, int positionY)
+        public void AddCreaturesToWorld(Enitities enitity, Weapon weapon, Armor armor, TypeOfAttack attackType, int positionX, int positionY)
         {
             creatureList.Add(CreatureFactory.makeCreature(positionX, positionY,weapon, armor, attackType ));
 
