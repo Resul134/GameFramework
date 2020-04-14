@@ -115,19 +115,14 @@ namespace LibMandatory.Models
 
 
 
-        public bool creatureMoverandom(Direction newDirect = 0)
+        public bool CreatureMoveRandom(World world, Direction newDirect = 0)
         {
-            return creatureRandomMove();
+            return handleMovements(world);
         }
 
-        private bool creatureRandomMove()
-        {
-            handleMovements();
+        
 
-            return true;
-        }
-
-        private void handleMovements()
+        private bool handleMovements(World map)
         {
             Random rand = new Random();
             int newPosX = FixedPositionX;
@@ -151,6 +146,16 @@ namespace LibMandatory.Models
                     newPosX--;
                     break;
             }
+
+            if (newPosX > map.Width || newPosX < 0) return false;
+            if (newPosY > map.Height || newPosY < 0) return false;
+
+            
+
+            FixedPositionY = newPosY;
+            FixedPositionX = newPosX;
+
+            return true;
         }
     }
 }

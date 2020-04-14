@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading;
@@ -277,7 +278,41 @@ namespace LibMandatory.Models
             {
                 spikeList.Add(SpikeFactory.makeSpikes(positionX,positionY,description));
             }
+            throw new NullReferenceException("Parameters must be filled");
             
+        }
+
+        
+
+        public void HumanPickUpsWeapon(HumanPlayer Player, Weapon weapon)
+        {
+            if (!weaponsList.Contains(weapon)) return;
+
+            Player.EquipWeapon(weapon);
+
+        }
+
+        public void HumanPickUpsArmor(HumanPlayer Player, Armor armor)
+        {
+            if (!armorList.Contains(armor)) return;
+
+            Player.EquipArmor(armor);
+
+        }
+
+        public void CreaturePicksUpWeapon(Enitities entity, Weapon weapon)
+        {
+            if (!weaponsList.Contains(weapon)) return;
+            
+            entity.EquipWeapon(weapon);
+        }
+
+
+        public void CreaturePicksUpArmor(Enitities entity, Armor armor)
+        {
+            if (!armorList.Contains(armor)) return;
+
+            entity.EquipArmor(armor);
         }
 
         public void removeSpikes(Spikes spikes)
@@ -288,7 +323,7 @@ namespace LibMandatory.Models
             }
         }
 
-        public void SpikesEncountered()
+        public void SpikesEncounteredByPlayer()
         {
             if (Player != null)
             {
@@ -301,6 +336,8 @@ namespace LibMandatory.Models
                 }
             }
         }
+
+        
 
     }
 

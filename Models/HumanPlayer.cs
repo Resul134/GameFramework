@@ -43,7 +43,7 @@ namespace LibMandatory.Models
             
         }
 
-        public void PlayerMovements(World environment, Direction newDirect)
+        public bool PlayerMovements(World environment, Direction newDirect)
         {
 
 
@@ -68,6 +68,17 @@ namespace LibMandatory.Models
             }
 
             Direction = newDirect;
+
+
+            if (newPosX > environment.Width || newPosX < 0) return false;
+            if (newPosY > environment.Height || newPosY < 0) return false;
+
+
+            
+            FixedPositionX = newPosX;
+            FixedPositionY = newPosY;
+
+            return true;
 
 
 
