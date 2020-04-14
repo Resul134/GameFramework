@@ -10,7 +10,7 @@ using LibMandatory.States;
 
 namespace LibMandatory.Models
 {
-    public class HumanPlayer : CreatureAbs
+    public class HumanPlayer : EnitityAbs
     {
         public HumanPlayer(string desctription, double hitpoints, Weapon weapon, Armor armor, int fixedPositionX, int fixedPositionY, TypeOfAttack attackType) : base(desctription, hitpoints, weapon, armor, fixedPositionX, fixedPositionY, attackType)
         {
@@ -20,25 +20,27 @@ namespace LibMandatory.Models
         }
 
         //Unfinished maybe convert method to bool, and check for if hitPoints under 0 return IsDead true?
-        public double AttackCreature(HumanPlayer player, CreatureAbs creatureOP)
+        public void AttackCreature(HumanPlayer player, EnitityAbs enitityOp)
         {
-            if (creatureOP.IsDead == false && player.IsDead == false)
+            while (enitityOp.IsDead == false && player.IsDead == false)
             {
+                //Depending on the units armor, the damage will either amplifiy or get a reduction
                 if (player.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Melee)
                 {
-                    return creatureOP.CurrentHealth = recieveDamage(player.Weapon.Damage, TypeOfAttack.Melee);
+                     enitityOp.CurrentHealth -= calcDamage(player.Weapon.Damage, TypeOfAttack.Melee);
+
                 }
                 if (player.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Magic)
                 {
-                    return creatureOP.CurrentHealth = recieveDamage(player.Weapon.Damage, TypeOfAttack.Magic);
+                    enitityOp.CurrentHealth -= calcDamage(player.Weapon.Damage, TypeOfAttack.Magic);
                 }
                 if (player.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Ranged)
                 {
-                    return creatureOP.CurrentHealth = recieveDamage(player.Weapon.Damage, TypeOfAttack.Ranged);
+                    enitityOp.CurrentHealth -= calcDamage(player.Weapon.Damage, TypeOfAttack.Ranged);
                 }
             }
 
-            return hitPoints;
+            
         }
 
         public void PlayerMovements(World environment, Direction newDirect)
@@ -72,7 +74,7 @@ namespace LibMandatory.Models
         }
 
 
-        public double recieveDamage(double recieveDamage, TypeOfAttack Typeattack)
+        private double calcDamage(double recieveDamage, TypeOfAttack Typeattack)
         {
             if (Typeattack == TypeOfAttack.Magic)
             {
@@ -119,7 +121,7 @@ namespace LibMandatory.Models
             }
         }
 
-        public void LootWeapon(Weapon newGear)
+        public void EquipWeapon(Weapon newGear)
         {
             if (newGear.Damage > Weapon.Damage)
             {
@@ -127,7 +129,7 @@ namespace LibMandatory.Models
             }
         }
 
-        public void LootArmor(Armor newArmor)
+        public void EquipArmor(Armor newArmor)
         {
             if (newArmor.Defense > ArmorType.Defense)
             {
@@ -136,7 +138,7 @@ namespace LibMandatory.Models
 
         }
 
-        public void LootPotion(Potion potion, double Modifier)
+        public void DrinkPotion(Potion potion, double Modifier)
         {
             if (FixedPositionX == potion.FixedPositionX && FixedPositionY == potion.FixedPositionY)
             {

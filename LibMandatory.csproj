@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractClasses\CreatureAbs.cs" />
+    <Compile Include="AbstractClasses\EnitityAbs.cs" />
     <Compile Include="Factories\ArmorFactory.cs" />
     <Compile Include="Factories\CreatureFactory.cs" />
     <Compile Include="Factories\PotionFactory.cs" />
@@ -52,7 +52,7 @@
     <Compile Include="Interfaces\IGameObject.cs" />
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\Weapon.cs" />
-    <Compile Include="Models\Creatures.cs" />
+    <Compile Include="Models\Enitities.cs" />
     <Compile Include="Models\HumanPlayer.cs" />
     <Compile Include="Models\Potion.cs" />
     <Compile Include="Models\Spikes.cs" />

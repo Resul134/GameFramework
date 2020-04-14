@@ -6,6 +6,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using LibMandatory.AbstractClasses;
 using LibMandatory.Factories;
 using LibMandatory.Interfaces;
 using LibMandatory.Items;
@@ -29,7 +30,7 @@ namespace LibMandatory.Models
         public PotionFactory PotionFactory = new PotionFactory();
 
 
-        public List<Creatures> creatureList { get; set; }
+        public List<EnitityAbs> creatureList { get; set; }
         public CreatureFactory CreatureFactory  = new CreatureFactory();
 
         public List<Spikes> spikeList { get; set; }
@@ -52,7 +53,7 @@ namespace LibMandatory.Models
             potionList = new List<Potion>();
             
 
-            creatureList = new List<Creatures>();
+            creatureList = new List<EnitityAbs>();
 
             spikeList = new List<Spikes>();
 
@@ -68,14 +69,14 @@ namespace LibMandatory.Models
 
        
 
-        private void MakeMap(int height, int width)
+        private void MakeMap()
         {
             char[,] playground = new char[Height, Width];
 
 
-            for (int i = 0; i < width; i++)
+            for (int i = 0; i < Height; i++)
             {
-                for (int j = 0; j < height; j++)
+                for (int j = 0; j < Width; j++)
                 {
                     if (Player.FixedPositionX == i && Player.FixedPositionY == j)
                     {
@@ -196,7 +197,7 @@ namespace LibMandatory.Models
         }
 
 
-        public void AddCreaturesToWorld(Creatures creature, Weapon weapon, Armor armor, TypeOfAttack attackType, int positionX, int positionY)
+        public void AddCreaturesToWorld(EnitityAbs enitity, Weapon weapon, Armor armor, TypeOfAttack attackType, int positionX, int positionY)
         {
             creatureList.Add(CreatureFactory.makeCreature(positionX, positionY,weapon, armor, attackType ));
 
@@ -216,10 +217,19 @@ namespace LibMandatory.Models
 
         }
 
-
+        //Experimental
         public void DecreaseAllCreaturesHP(int hp)
         {
-            creatureList.Sum(x => x.CurrentHealth - hp);
+            try
+            {
+            
+                creatureList.Sum(x => x.CurrentHealth - hp);
+
+            }
+            catch (ArgumentException e)
+            {
+                throw new ArgumentException("");
+            }
 
         }
 
@@ -261,11 +271,11 @@ namespace LibMandatory.Models
             
         }
 
-        public void addSpikes(Spikes spikes)
+        public void addSpikes(int positionX, int positionY, string description)
         {
-            if (spikes != null)
+            if (positionX != null && positionY != null)
             {
-                spikeList.Add(spikes);
+                spikeList.Add(SpikeFactory.makeSpikes(positionX,positionY,description));
             }
             
         }

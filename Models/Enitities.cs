@@ -9,11 +9,11 @@ using LibMandatory.States;
 
 namespace LibMandatory.Models
 {
-    public class Creatures : CreatureAbs
+    public class Enitities : EnitityAbs
     {
         
 
-        public Creatures(int positionX, int positionY, Weapon weaponCreature, Armor armor, TypeOfAttack attackType) : base("Goblin", 120, weaponCreature, armor, positionX, positionY, attackType)
+        public Enitities(int positionX, int positionY, Weapon weaponCreature, Armor armor, TypeOfAttack attackType) : base("Goblin", 120, weaponCreature, armor, positionX, positionY, attackType)
         {
             Direction = Direction.Up;
             IsDead = false;
@@ -25,19 +25,19 @@ namespace LibMandatory.Models
 
         public double AttackPlayer(World mapPlayer)
         {
-            if (IsDead == false && mapPlayer.Player.CurrentHealth > 0)  
+            while (IsDead == false && mapPlayer.Player.CurrentHealth > 0)  
             {
                 if (Weapon.Damage < mapPlayer.Player.CurrentHealth && AttackType == TypeOfAttack.Melee)
                 {
-                    return mapPlayer.Player.CurrentHealth = recieveDamage(Weapon.Damage, TypeOfAttack.Melee);
+                    return mapPlayer.Player.CurrentHealth -= CalcDamage(Weapon.Damage, TypeOfAttack.Melee);
                 }
                 if (Weapon.Damage < mapPlayer.Player.CurrentHealth && AttackType == TypeOfAttack.Magic)
                 {
-                    return mapPlayer.Player.CurrentHealth = recieveDamage(Weapon.Damage, TypeOfAttack.Magic);
+                    return mapPlayer.Player.CurrentHealth -= CalcDamage(Weapon.Damage, TypeOfAttack.Magic);
                 }
                 if (Weapon.Damage < mapPlayer.Player.CurrentHealth && AttackType == TypeOfAttack.Ranged)
                 {
-                    return mapPlayer.Player.CurrentHealth = recieveDamage(Weapon.Damage, TypeOfAttack.Ranged);
+                    return mapPlayer.Player.CurrentHealth -= CalcDamage(Weapon.Damage, TypeOfAttack.Ranged);
                 }
             }
 
@@ -51,7 +51,7 @@ namespace LibMandatory.Models
 
         
 
-        public double recieveDamage(double recieveDamage, TypeOfAttack Typeattack)
+        private double CalcDamage(double recieveDamage, TypeOfAttack Typeattack)
         {
             if (Typeattack == TypeOfAttack.Magic)
             {
@@ -82,7 +82,7 @@ namespace LibMandatory.Models
             return hitPoints;
         }
 
-        public void LootWeapon(Weapon newGear)
+        public void EquipWeapon(Weapon newGear)
         {
             if (newGear.Damage > Weapon.Damage)
             {
@@ -90,14 +90,31 @@ namespace LibMandatory.Models
             }
         }
 
-        public void Loot(Armor newArmor)
+        public void EquipArmor(Armor newArmor)
         {
             if (newArmor.Defense > ArmorType.Defense)
             {
                 ArmorType = newArmor;
             }
+            Console.WriteLine("The item you're equipping has less defence");
 
         }
+
+        public void setCreatureHPandDamage(EnitityAbs creature, int damageDemod, int hpDemod)
+        {
+            if (creature.IsDead == false) 
+            {
+                creature.hitPoints = hpDemod;
+                creature.Weapon.Damage = hpDemod;
+            }
+
+            Console.WriteLine("Creature is dead");
+            
+            
+
+        }
+
+
 
         public bool creatureMoverandom(Direction newDirect = 0)
         {

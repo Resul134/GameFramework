@@ -42,7 +42,7 @@ namespace LibMandatory.Models
 
         public override string ToString()
         {
-            return $"{nameof(FixedPositionX)}: {FixedPositionX}, {nameof(FixedPositionY)}: {FixedPositionY}, {nameof(Descrtiption)}: {Descrtiption}";
+            return $"{nameof(Descrtiption)}: {Descrtiption}";
         }
     }
 }
