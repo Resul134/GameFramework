@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Security.AccessControl;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using LibMandatory.Interfaces;
@@ -17,7 +18,7 @@ namespace LibMandatory.Items
         public Weapon(TypeOfAttack typeOfAttack, double damage, string weaponDescription, int positionX, int positionY)
         {
             TypeOfAttack = typeOfAttack;
-            Damage = damage;
+            Damage = CantMakeLowDmgWeapon(damage);
             WeaponDescription = weaponDescription;
             _attackResDic = new Dictionary<TypeOfAttack, Armor>();
             FixedPositionY = positionY;
@@ -90,6 +91,8 @@ namespace LibMandatory.Items
                 }
             }
 
+            
+
 
             if (armorType == ArmorType.Leather)
             {
@@ -114,6 +117,21 @@ namespace LibMandatory.Items
             }
 
             return Damage;
+
+        }
+
+        private double CantMakeLowDmgWeapon(double dmg)
+        {
+           
+
+            if (dmg < 20)
+            {
+                throw new ArgumentException("Damage cannot be lower than 20");
+            }
+
+
+            return dmg;
+
 
         }
 
