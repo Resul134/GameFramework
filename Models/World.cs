@@ -17,6 +17,7 @@ namespace LibMandatory.Models
 {
     public class World
     {
+        public event NotificationHandler OnNotification;
         public int Height { get; set; }
         public int Width { get; set; }
         public HumanPlayer Player { get; set; }
@@ -275,11 +276,21 @@ namespace LibMandatory.Models
         {
             if (name != null)
             {
+                //Obeserver pattern experimental
+                _notify($"Checking '{name}'...");
                 var selectedCreatures = creatureList.Where(x => x.Description == name).ToList();
-                foreach (var s in selectedCreatures)
+
+                if (selectedCreatures.Count > 0)
                 {
-                    Console.WriteLine("Creature names: " + s.Description);
+                    _notify($"We found a match!");
+                    foreach (var s in selectedCreatures)
+                    {
+                        Console.WriteLine("Creature names: " + s.Description);
+
+                    }
+
                 }
+                
             }
             
         }
@@ -335,7 +346,7 @@ namespace LibMandatory.Models
             }
         }
 
-        public void SpikesEncounteredByPlayer()
+        public void SpikesEncounteredByPlayerDamage()
         {
             if (Player != null)
             {
@@ -343,23 +354,30 @@ namespace LibMandatory.Models
                 {
                     if (Player.FixedPositionX == s.FixedPositionX && Player.FixedPositionY == s.FixedPositionY)
                     {
-                        Player.CurrentHealth -= s.Damage;
+                        double dmgRecieved =  Player.CurrentHealth - s.Damage;
+                        Console.WriteLine($"Damage recieved {dmgRecieved}");
                     }
                 }
             }
+            
         }
 
-        
+
+        private void _notify(string message)
+        {
+            if (OnNotification != null)
+            {
+                OnNotification.Invoke(this, new NotificationEventArg
+                {
+                    Message = message
+                });
+            }
+        }
+
+
 
     }
 
-
-
-
-
-
-
-
-
+    public delegate void NotificationHandler(object sender, NotificationEventArg args);
 }
 
