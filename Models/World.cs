@@ -228,7 +228,7 @@ namespace LibMandatory.Models
             try
             {
             
-                creatureList.Sum(x => x.CurrentHealth - hp);
+                creatureList.Where(x=> x.hitPoints > 0).ToList().ForEach(s=> s.hitPoints = hp);
 
             }
             catch (ArgumentException e)
@@ -239,7 +239,7 @@ namespace LibMandatory.Models
         }
 
 
-        public void CursePlayer(double hitPoints)
+        public void ReducePlayerArmor(double armorDemod)
         {
             if (Player != null)
             {
@@ -247,7 +247,7 @@ namespace LibMandatory.Models
                 {
                     if (c.AttackType == TypeOfAttack.Magic)
                     {
-                        Player.CurrentHealth -= hitPoints;
+                        Player.ArmorType.Defense -= armorDemod;
                     }
                 }
             }
