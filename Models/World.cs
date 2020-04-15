@@ -271,11 +271,15 @@ namespace LibMandatory.Models
         }
 
 
-        public void SelectCreaturesWithName(string name)
+        public void PrintCreaturesWithName(string name)
         {
             if (name != null)
             {
-                creatureList.Select(x => x.Description == name);
+                var selectedCreatures = creatureList.Where(x => x.Description == name).ToList();
+                foreach (var s in selectedCreatures)
+                {
+                    Console.WriteLine("Creature names: " + s.Description);
+                }
             }
             
         }
