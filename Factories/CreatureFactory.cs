@@ -12,10 +12,14 @@ namespace LibMandatory.Factories
 {
     public class CreatureFactory
     {
-        public Enitities makeCreature(int positionX, int positionY, Weapon weapon, Armor armor, TypeOfAttack attackType )
+        public Enitities makeCreature(int positionX, int positionY, Weapon weapon, Armor armor, TypeOfAttack attackType, double hp, string name )
         {
-            Enitities enitity =  new Enitities(positionX, positionY, weapon, armor, attackType);
+            Enitities enitity =  new Enitities(positionX, positionY, weapon, armor, attackType, hp, name);
             return enitity;
         }
+
+        
+
+
     }
 }

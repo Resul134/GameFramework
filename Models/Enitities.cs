@@ -113,6 +113,8 @@ namespace LibMandatory.Models
 
         }
 
+        
+
 
 
         public bool CreatureMoveRandom(World world, Direction newDirect = 0)

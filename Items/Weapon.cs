@@ -120,6 +120,40 @@ namespace LibMandatory.Items
 
         }
 
+
+        //Eksperimental method
+        public Weapon RandomizeWeaponByAttackStyle(TypeOfAttack attackType)
+        {
+            Weapon weapon = new Weapon();
+            Random rand = new Random();
+
+            if (attackType == TypeOfAttack.Magic)
+            {
+                weapon.Damage = rand.Next(30, 60);
+                weapon.WeaponDescription = "Random Wand";
+                weapon.TypeOfAttack = TypeOfAttack.Magic;
+                return weapon;
+
+            }
+            if (attackType == TypeOfAttack.Melee)
+            {
+                weapon.Damage = rand.Next(30, 60);
+                weapon.WeaponDescription = "Random Sword";
+                weapon.TypeOfAttack = TypeOfAttack.Melee;
+                return weapon;
+            }
+            if (attackType == TypeOfAttack.Ranged)
+            {
+                weapon.Damage = rand.Next(30, 60);
+                weapon.WeaponDescription = "Random Bow";
+                weapon.TypeOfAttack = TypeOfAttack.Ranged;
+                return weapon;
+            }
+
+            return weapon;
+
+        }
+
         private double CantMakeLowDmgWeapon(double dmg)
         {
            

@@ -23,6 +23,9 @@ namespace LibMandatory.Models
 
         public List<Weapon> weaponsList { get; set; }
         public WeaponFactory WeaponFactory = new WeaponFactory();
+        
+
+
 
         public List<Armor> armorList { get; set; }
         public ArmorFactory ArmorFactory = new ArmorFactory();
@@ -202,9 +205,10 @@ namespace LibMandatory.Models
         }
 
 
-        public void AddCreaturesToWorld(Enitities enitity, Weapon weapon, Armor armor, TypeOfAttack attackType, int positionX, int positionY)
+        public void AddCreaturesToWorld(Enitities enitity, Weapon weapon, Armor armor,
+            TypeOfAttack attackType, int positionX, int positionY, double hitPoints, string name)
         {
-            creatureList.Add(CreatureFactory.makeCreature(positionX, positionY,weapon, armor, attackType ));
+            creatureList.Add(CreatureFactory.makeCreature(positionX, positionY,weapon, armor, attackType, hitPoints, name));
 
         }
 
