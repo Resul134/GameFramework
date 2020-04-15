@@ -208,17 +208,13 @@ namespace LibMandatory.Models
 
         }
 
-        public int RemoveCreaturFromWorld(int numberOfCreatures)
+        public void RemoveCreaturFromWorld(Enitities entity)
         {
             if (creatureList.Count > 0 && creatureList.Count != 0)
             {
-                var i = creatureList.Count - numberOfCreatures;
-
-                return i;
+                creatureList.Remove(entity);
             }
-
-            return creatureList.Count;
-
+            
 
         }
 
@@ -227,7 +223,11 @@ namespace LibMandatory.Models
         {
             try
             {
-            
+                creatureList.All(x =>
+                {
+                    x.hitPoints = hp;
+                    return true;
+                });
                 creatureList.Where(x=> x.hitPoints > 0).ToList().ForEach(s=> s.hitPoints = hp);
 
             }
