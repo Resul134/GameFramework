@@ -125,7 +125,11 @@ namespace LibMandatory.Models
                         }
                     }
 
+                    Console.WriteLine(playground[i, j]);
+
                 }
+
+                
             }
 
             
@@ -249,7 +253,7 @@ namespace LibMandatory.Models
             }
         }
 
-        public void BuffPlayer_IF_Potion_Encountered(double healthModifier, double damageModifier)
+        public void BuffPlayer_IF_Potion_EncounteredWorld(double healthModifier, double damageModifier)
         {
             foreach (var p in potionList)
             {
