@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
@@ -24,8 +25,8 @@ namespace LibMandatory.Models
 
         public List<Weapon> weaponsList { get; set; }
         public WeaponFactory WeaponFactory = new WeaponFactory();
-        
 
+        public EventHandler onChanged;
 
 
         public List<Armor> armorList { get; set; }
@@ -176,6 +177,8 @@ namespace LibMandatory.Models
         public void AddWeapontoWorld(TypeOfAttack attackType, double damage, string description, int positionX, int positionY)
         {
             weaponsList.Add(WeaponFactory.GenerateWeapon(attackType, damage, description,positionX,positionY));
+
+            OnEventChanged(EventArgs.Empty);
         }
 
         public void RemoveWeaponFromWorld(Weapon weapon)
@@ -196,7 +199,13 @@ namespace LibMandatory.Models
 
         public void AddPotionToWorldRandomPosition(string potionName, int positionX, int positionY)
         {
+            //Observer
             potionList.Add(PotionFactory.makePotions(positionX, positionY, potionName));
+            OnEventChanged(EventArgs.Empty);
+
+            //EventArgs.Empty is an instance of the Null object pattern.
+
+            //Basically having an object representing "no value" to avoid checking for null when using it.
         }
 
 
@@ -290,6 +299,7 @@ namespace LibMandatory.Models
                     }
 
                 }
+                throw new ArgumentException("Something went wrong bro");
                 
             }
             
@@ -361,9 +371,19 @@ namespace LibMandatory.Models
             }
             
         }
+        //Observer, 
+        public void OnEventChanged(EventArgs s)
+        {
+            EventHandler handler = onChanged;
+            if (handler != null)
+            {
+                handler.Invoke(this, s);
+            }
+            
+        }
 
-
-        private void _notify(string message)
+        //Observer
+        public void _notify(string message)
         {
             if (OnNotification != null)
             {
@@ -374,10 +394,14 @@ namespace LibMandatory.Models
             }
         }
 
+        
+
 
 
     }
 
     public delegate void NotificationHandler(object sender, NotificationEventArg args);
+    
+    
 }
 

@@ -99,6 +99,45 @@ namespace LibMandatory.Models
 
         }
 
+        public bool MonsterInteractionsInWorld(World world)
+        {
+            Random rand = new Random();
+            CreatureMoveRandom(world, Direction = (Direction) rand.Next(1, 4)); // or 0?
+
+            var weapons = world.weaponsList;
+            
+                foreach (var w in weapons)
+                {
+                    var interact = world.creatureList.Where(x =>
+                        x.FixedPositionX == w.FixedPositionX && x.FixedPositionY == w.FixedPositionY);
+
+                    world._notify("Checking");
+                    if (interact.Count() == 0)
+                    {
+                        return false;
+                    }
+
+
+                    //Use FirstOrDefault() when you know that you will need to check whether
+                    //there was an element or not. In other words, if you know it is legal for the sequence to be empty, which can be possible.
+                    var weaponC = weapons.FirstOrDefault();
+
+
+                    EquipWeapon(weaponC);
+                
+                    world._notify("Succesful");
+
+                    return true;
+
+                }
+
+
+                return false;
+
+            
+
+        }
+
         public void setCreatureHPandDamage(EnitityAbs creature, int damageDemod, int hpDemod)
         {
             if (creature.IsDead == false) 
