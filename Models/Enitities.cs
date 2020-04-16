@@ -99,7 +99,7 @@ namespace LibMandatory.Models
 
         }
 
-        public bool MonsterInteractionsInWorld(World world)
+        public bool MonsterInteractionsInWorldWeapons(World world)
         {
             Random rand = new Random();
             CreatureMoveRandom(world, Direction = (Direction) rand.Next(1, 4)); // or 0?
