@@ -26,17 +26,17 @@ namespace LibMandatory.Models
         public List<IWeapon> weaponsList { get; set; }
         public WeaponFactory WeaponFactory = new WeaponFactory();
 
-        public EventHandler onChanged;
+        public EventHandler OnChanged;
 
 
-        public List<Armor> armorList { get; set; }
+        public List<Armor> ArmorList { get; set; }
         public ArmorFactory ArmorFactory = new ArmorFactory();
 
         public List<Potion> potionList { get; set; }
         public PotionFactory PotionFactory = new PotionFactory();
 
 
-        public List<ICreature> creatureList { get; set; }
+        public List<ICreature> CreatureList { get; set; }
         public CreatureFactory CreatureFactory  = new CreatureFactory();
 
         public List<Spikes> spikeList { get; set; }
@@ -53,13 +53,13 @@ namespace LibMandatory.Models
             weaponsList = new List<IWeapon>();
             
 
-            armorList = new List<Armor>();
+            ArmorList = new List<Armor>();
            
 
             potionList = new List<Potion>();
             
 
-            creatureList = new List<ICreature>();
+            CreatureList = new List<ICreature>();
 
             spikeList = new List<Spikes>();
 
@@ -98,7 +98,7 @@ namespace LibMandatory.Models
                         }
                     }
 
-                    foreach (var A in armorList)
+                    foreach (var A in ArmorList)
                     {
                         if (A.FixedPositionX == i && A.FixedPositionY == j)
                         {
@@ -114,7 +114,7 @@ namespace LibMandatory.Models
                         }
                     }
 
-                    foreach (var C in creatureList)
+                    foreach (var C in CreatureList)
                     {
                         if (C.FixedPositionX == i && C.FixedPositionY == j)
                         {
@@ -188,12 +188,12 @@ namespace LibMandatory.Models
 
         public void AddArmortoWorld(ArmorType armorType, string armorname, double defense, int positionX, int positionY)
         {
-            armorList.Add(ArmorFactory.getTypeOfArmor(armorType, armorname, defense, positionX,positionY));
+            ArmorList.Add(ArmorFactory.getTypeOfArmor(armorType, armorname, defense, positionX,positionY));
         }
 
         public void RemoveArmor(Armor armor)
         {
-            armorList.Remove(armor);
+            ArmorList.Remove(armor);
         }
 
 
@@ -218,15 +218,15 @@ namespace LibMandatory.Models
         public void AddCreaturesToWorld(Entities entity, Weapon weapon, Armor armor,
             TypeOfAttack attackType, int positionX, int positionY, double hitPoints, string name)
         {
-            creatureList.Add(CreatureFactory.makeCreature(positionX, positionY,weapon, armor, attackType, hitPoints, name));
+            CreatureList.Add(CreatureFactory.makeCreature(positionX, positionY,weapon, armor, attackType, hitPoints, name));
 
         }
 
         public void RemoveCreaturFromWorld(Entities entity)
         {
-            if (creatureList.Count > 0 && creatureList.Count != 0)
+            if (CreatureList.Count > 0 && CreatureList.Count != 0)
             {
-                creatureList.Remove(entity);
+                CreatureList.Remove(entity);
             }
             
 
@@ -237,12 +237,12 @@ namespace LibMandatory.Models
         {
             try
             {
-                creatureList.All(x =>
+                CreatureList.All(x =>
                 {
                     x.hitPoints = hp;
                     return true;
                 });
-                creatureList.Where(x=> x.hitPoints > 0).ToList().ForEach(s=> s.hitPoints = hp);
+                CreatureList.Where(x=> x.hitPoints > 0).ToList().ForEach(s=> s.hitPoints = hp);
 
             }
             catch (ArgumentException e)
@@ -257,7 +257,7 @@ namespace LibMandatory.Models
         {
             if (Player != null)
             {
-                foreach (var c in creatureList)
+                foreach (var c in CreatureList)
                 {
                     if (c.AttackType == TypeOfAttack.Magic)
                     {
@@ -287,7 +287,7 @@ namespace LibMandatory.Models
             {
                 //Obeserver pattern experimental
                 _notify($"Checking '{name}'...");
-                var selectedCreatures = creatureList.Where(x => x.Description == name).ToList();
+                var selectedCreatures = CreatureList.Where(x => x.Description == name).ToList();
 
                 if (selectedCreatures.Count > 0)
                 {
@@ -327,7 +327,7 @@ namespace LibMandatory.Models
 
         public void HumanPickUpsArmor(HumanPlayer Player, Armor armor)
         {
-            if (!armorList.Contains(armor)) return;
+            if (!ArmorList.Contains(armor)) return;
 
             Player.EquipArmor(armor);
 
@@ -343,7 +343,7 @@ namespace LibMandatory.Models
 
         public void CreaturePicksUpArmor(Entities entity, Armor armor)
         {
-            if (!armorList.Contains(armor)) return;
+            if (!ArmorList.Contains(armor)) return;
 
             entity.EquipArmor(armor);
         }
@@ -374,7 +374,7 @@ namespace LibMandatory.Models
         //Observer, 
         public void OnEventChanged(EventArgs s)
         {
-            EventHandler handler = onChanged;
+            EventHandler handler = OnChanged;
             if (handler != null)
             {
                 handler.Invoke(this, s);

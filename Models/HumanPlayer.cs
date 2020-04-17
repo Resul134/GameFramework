@@ -135,7 +135,7 @@ namespace LibMandatory.Models
         public void DecreaseCreatureDefenses(World creatures, double defenseDemod)
         {
 
-            creatures.creatureList.Where(x=> x.ArmorType.Defense > 0).ToList().ForEach(s=> s.ArmorType.Defense = defenseDemod);
+            creatures.CreatureList.Where(x=> x.ArmorType.Defense > 0).ToList().ForEach(s=> s.ArmorType.Defense = defenseDemod);
 
         }
 

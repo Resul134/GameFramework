@@ -108,7 +108,7 @@ namespace LibMandatory.Models
             
                 foreach (var w in weapons)
                 {
-                    var interact = world.creatureList.Where(x =>
+                    var interact = world.CreatureList.Where(x =>
                         x.FixedPositionX == w.FixedPositionX && x.FixedPositionY == w.FixedPositionY);
 
                     world._notify("Checking");
