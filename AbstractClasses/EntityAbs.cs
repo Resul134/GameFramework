@@ -9,7 +9,7 @@ using LibMandatory.States;
 
 namespace LibMandatory.AbstractClasses
 {
-    public abstract class EnitityAbs : IGameObject
+    public abstract class EntityAbs : ICreature
     {
 
  
@@ -40,7 +40,7 @@ namespace LibMandatory.AbstractClasses
         }
 
 
-        public EnitityAbs(string desctription, double hitpoints, Weapon weapon, Armor armor, int fixedPositionX, int fixedPositionY, TypeOfAttack attackType)
+        public EntityAbs(string desctription, double hitpoints, Weapon weapon, Armor armor, int fixedPositionX, int fixedPositionY, TypeOfAttack attackType)
         {
             CurrentHealth =  hitPoints;
             hitPoints = hitpoints;

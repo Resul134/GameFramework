@@ -9,11 +9,11 @@ using LibMandatory.States;
 
 namespace LibMandatory.Models
 {
-    public class Enitities : EnitityAbs
+    public class Entities : EntityAbs
     {
         
 
-        public Enitities(int positionX, int positionY, Weapon weaponCreature, Armor armor, TypeOfAttack attackType, double hp, string name) : base(name, hp, weaponCreature, armor, positionX, positionY, attackType)
+        public Entities(int positionX, int positionY, Weapon weaponCreature, Armor armor, TypeOfAttack attackType, double hp, string name) : base(name, hp, weaponCreature, armor, positionX, positionY, attackType)
         {
             Direction = Direction.Up;
             IsDead = false;
@@ -138,7 +138,7 @@ namespace LibMandatory.Models
 
         }
 
-        public void setCreatureHPandDamage(EnitityAbs creature, int damageDemod, int hpDemod)
+        public void setCreatureHPandDamage(EntityAbs creature, int damageDemod, int hpDemod)
         {
             if (creature.IsDead == false) 
             {

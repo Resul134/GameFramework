@@ -6,13 +6,14 @@ using System.Security.AccessControl;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using LibMandatory.AbstractClasses;
 using LibMandatory.Interfaces;
 using LibMandatory.Models;
 using LibMandatory.States;
 
 namespace LibMandatory.Items
 {
-    public class Weapon : IGameObject
+    public class Weapon : WeaponAbs
     {
         private Dictionary<TypeOfAttack, Armor> _attackResDic;
         public Weapon(TypeOfAttack typeOfAttack, double damage, string weaponDescription, int positionX, int positionY)
@@ -35,12 +36,7 @@ namespace LibMandatory.Items
 
         #region Properties
 
-        public TypeOfAttack TypeOfAttack { get; set; }
-        public double Damage { get; set; }
-        public string WeaponDescription { get; set; }
-        public int FixedPositionX { get; set; }
-        public int FixedPositionY { get; set; }
-
+       
 
 
         #endregion
@@ -175,6 +171,7 @@ namespace LibMandatory.Items
             return $"{nameof(TypeOfAttack)}: {TypeOfAttack}, {nameof(Damage)}: {Damage}, {nameof(WeaponDescription)}: {WeaponDescription}";
         }
 
-        
+
+       
     }
 }

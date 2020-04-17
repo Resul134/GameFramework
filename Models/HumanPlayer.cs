@@ -10,7 +10,7 @@ using LibMandatory.States;
 
 namespace LibMandatory.Models
 {
-    public class HumanPlayer : EnitityAbs
+    public class HumanPlayer : EntityAbs
     {
         public HumanPlayer(string desctription, double hitpoints, Weapon weapon, Armor armor, int fixedPositionX, int fixedPositionY, TypeOfAttack attackType) : base(desctription, hitpoints, weapon, armor, fixedPositionX, fixedPositionY, attackType)
         {
@@ -20,23 +20,23 @@ namespace LibMandatory.Models
         }
 
         //Unfinished maybe convert method to bool, and check for if hitPoints under 0 return IsDead true?
-        public void AttackCreature(HumanPlayer player, EnitityAbs enitityOp)
+        public void AttackCreature(HumanPlayer player, EntityAbs entityOp)
         {
-            while (enitityOp.IsDead == false && player.IsDead == false)
+            while (entityOp.IsDead == false && player.IsDead == false)
             {
                 //Depending on the units armor, the damage will either amplifiy or get a reduction
                 if (player.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Melee)
                 {
-                     enitityOp.CurrentHealth -= calcDamage(player.Weapon.Damage, TypeOfAttack.Melee);
+                     entityOp.CurrentHealth -= calcDamage(player.Weapon.Damage, TypeOfAttack.Melee);
 
                 }
                 if (player.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Magic)
                 {
-                    enitityOp.CurrentHealth -= calcDamage(player.Weapon.Damage, TypeOfAttack.Magic);
+                    entityOp.CurrentHealth -= calcDamage(player.Weapon.Damage, TypeOfAttack.Magic);
                 }
                 if (player.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Ranged)
                 {
-                    enitityOp.CurrentHealth -= calcDamage(player.Weapon.Damage, TypeOfAttack.Ranged);
+                    entityOp.CurrentHealth -= calcDamage(player.Weapon.Damage, TypeOfAttack.Ranged);
                 }
             }
 

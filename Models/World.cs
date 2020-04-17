@@ -23,7 +23,7 @@ namespace LibMandatory.Models
         public int Width { get; set; }
         public HumanPlayer Player { get; set; }
 
-        public List<Weapon> weaponsList { get; set; }
+        public List<IWeapon> weaponsList { get; set; }
         public WeaponFactory WeaponFactory = new WeaponFactory();
 
         public EventHandler onChanged;
@@ -36,7 +36,7 @@ namespace LibMandatory.Models
         public PotionFactory PotionFactory = new PotionFactory();
 
 
-        public List<Enitities> creatureList { get; set; }
+        public List<ICreature> creatureList { get; set; }
         public CreatureFactory CreatureFactory  = new CreatureFactory();
 
         public List<Spikes> spikeList { get; set; }
@@ -50,7 +50,7 @@ namespace LibMandatory.Models
             Width = width;
             Player = new HumanPlayer("Arthur", 120, new Weapon(TypeOfAttack.Melee, 50, "sword", -1,-1),
                 new Armor(ArmorType.Plate,"Plate", 30, -1,-1),1,1, TypeOfAttack.Melee  );
-            weaponsList = new List<Weapon>();
+            weaponsList = new List<IWeapon>();
             
 
             armorList = new List<Armor>();
@@ -59,7 +59,7 @@ namespace LibMandatory.Models
             potionList = new List<Potion>();
             
 
-            creatureList = new List<Enitities>();
+            creatureList = new List<ICreature>();
 
             spikeList = new List<Spikes>();
 
@@ -215,14 +215,14 @@ namespace LibMandatory.Models
         }
 
 
-        public void AddCreaturesToWorld(Enitities enitity, Weapon weapon, Armor armor,
+        public void AddCreaturesToWorld(Entities entity, Weapon weapon, Armor armor,
             TypeOfAttack attackType, int positionX, int positionY, double hitPoints, string name)
         {
             creatureList.Add(CreatureFactory.makeCreature(positionX, positionY,weapon, armor, attackType, hitPoints, name));
 
         }
 
-        public void RemoveCreaturFromWorld(Enitities entity)
+        public void RemoveCreaturFromWorld(Entities entity)
         {
             if (creatureList.Count > 0 && creatureList.Count != 0)
             {
@@ -333,7 +333,7 @@ namespace LibMandatory.Models
 
         }
 
-        public void CreaturePicksUpWeapon(Enitities entity, Weapon weapon)
+        public void CreaturePicksUpWeapon(Entities entity, Weapon weapon)
         {
             if (!weaponsList.Contains(weapon)) return;
             
@@ -341,7 +341,7 @@ namespace LibMandatory.Models
         }
 
 
-        public void CreaturePicksUpArmor(Enitities entity, Armor armor)
+        public void CreaturePicksUpArmor(Entities entity, Armor armor)
         {
             if (!armorList.Contains(armor)) return;
 
