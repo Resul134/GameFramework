@@ -19,11 +19,12 @@ namespace LibMandatory.Models
     public class World
     {
         public event NotificationHandler OnNotification;
+        public delegate void NotificationHandler(object sender, NotificationEventArg args);
         public int Height { get; set; }
         public int Width { get; set; }
         public HumanPlayer Player { get; set; }
 
-        public List<IWeapon> weaponsList { get; set; }
+        public List<IWeapon> WeaponsList { get; set; }
         public WeaponFactory WeaponFactory = new WeaponFactory();
 
         public EventHandler OnChanged;
@@ -39,7 +40,7 @@ namespace LibMandatory.Models
         public List<ICreature> CreatureList { get; set; }
         public CreatureFactory CreatureFactory  = new CreatureFactory();
 
-        public List<Spikes> spikeList { get; set; }
+        public List<Spikes> SpikeList { get; set; }
         public spikeFactory SpikeFactory = new spikeFactory();
 
 
@@ -50,7 +51,7 @@ namespace LibMandatory.Models
             Width = width;
             Player = new HumanPlayer("Arthur", 120, new Weapon(TypeOfAttack.Melee, 50, "sword", -1,-1),
                 new Armor(ArmorType.Plate,"Plate", 30, -1,-1),1,1, TypeOfAttack.Melee  );
-            weaponsList = new List<IWeapon>();
+            WeaponsList = new List<IWeapon>();
             
 
             ArmorList = new List<Armor>();
@@ -61,7 +62,7 @@ namespace LibMandatory.Models
 
             CreatureList = new List<ICreature>();
 
-            spikeList = new List<Spikes>();
+            SpikeList = new List<Spikes>();
 
 
 
@@ -90,7 +91,7 @@ namespace LibMandatory.Models
                     }
                     else playground[i, j] = '*';
 
-                    foreach (var w in weaponsList)
+                    foreach (var w in WeaponsList)
                     {
                         if (w.FixedPositionX == i && w.FixedPositionY == j)
                         {
@@ -122,7 +123,7 @@ namespace LibMandatory.Models
                         }
                     }
 
-                    foreach (var S in spikeList)
+                    foreach (var S in SpikeList)
                     {
                         if (S.FixedPositionX == i && S.FixedPositionY == j)
                         {
@@ -130,7 +131,7 @@ namespace LibMandatory.Models
                         }
                     }
 
-                    Console.WriteLine(playground[i, j]);
+                   
 
                 }
 
@@ -176,14 +177,14 @@ namespace LibMandatory.Models
 
         public void AddWeapontoWorld(TypeOfAttack attackType, double damage, string description, int positionX, int positionY)
         {
-            weaponsList.Add(WeaponFactory.GenerateWeapon(attackType, damage, description,positionX,positionY));
+            WeaponsList.Add(WeaponFactory.GenerateWeapon(attackType, damage, description,positionX,positionY));
 
             OnEventChanged(EventArgs.Empty);
         }
 
         public void RemoveWeaponFromWorld(Weapon weapon)
         {
-            weaponsList.Remove(weapon);
+            WeaponsList.Remove(weapon);
         }
 
         public void AddArmortoWorld(ArmorType armorType, string armorname, double defense, int positionX, int positionY)
@@ -193,7 +194,12 @@ namespace LibMandatory.Models
 
         public void RemoveArmor(Armor armor)
         {
-            ArmorList.Remove(armor);
+            if (armor != null)
+            {
+                ArmorList.Remove(armor);
+            }
+            throw new NullReferenceException("Armor is not filled out");
+            
         }
 
 
@@ -237,17 +243,13 @@ namespace LibMandatory.Models
         {
             try
             {
-                CreatureList.All(x =>
-                {
-                    x.hitPoints = hp;
-                    return true;
-                });
-                CreatureList.Where(x=> x.hitPoints > 0).ToList().ForEach(s=> s.hitPoints = hp);
 
+                    CreatureList.Where(x => x.hitPoints > 0).ToList().ForEach(s => s.hitPoints = hp);
+       
             }
-            catch (ArgumentException e)
+            catch (NullReferenceException e)
             {
-                throw new ArgumentException("");
+                Console.WriteLine(e.Message);
             }
 
         }
@@ -302,6 +304,7 @@ namespace LibMandatory.Models
                 throw new ArgumentException("Something went wrong bro");
                 
             }
+            throw new NullReferenceException("Name cannot be empty");
             
         }
 
@@ -309,7 +312,7 @@ namespace LibMandatory.Models
         {
             if (positionX != null && positionY != null)
             {
-                spikeList.Add(SpikeFactory.makeSpikes(positionX,positionY,description));
+                SpikeList.Add(SpikeFactory.makeSpikes(positionX,positionY,description));
             }
             throw new NullReferenceException("Parameters must be filled");
             
@@ -319,7 +322,7 @@ namespace LibMandatory.Models
 
         public void HumanPickUpsWeapon(HumanPlayer Player, Weapon weapon)
         {
-            if (!weaponsList.Contains(weapon)) return;
+            if (!WeaponsList.Contains(weapon)) return;
 
             Player.EquipWeapon(weapon);
 
@@ -335,7 +338,7 @@ namespace LibMandatory.Models
 
         public void CreaturePicksUpWeapon(Entities entity, Weapon weapon)
         {
-            if (!weaponsList.Contains(weapon)) return;
+            if (!WeaponsList.Contains(weapon)) return;
             
             entity.EquipWeapon(weapon);
         }
@@ -352,7 +355,7 @@ namespace LibMandatory.Models
         {
             if (spikes != null)
             {
-                spikeList.Remove(spikes);
+                SpikeList.Remove(spikes);
             }
         }
 
@@ -360,7 +363,7 @@ namespace LibMandatory.Models
         {
             if (Player != null)
             {
-                foreach (var s in spikeList)
+                foreach (var s in SpikeList)
                 {
                     if (Player.FixedPositionX == s.FixedPositionX && Player.FixedPositionY == s.FixedPositionY)
                     {
@@ -379,6 +382,7 @@ namespace LibMandatory.Models
             {
                 handler.Invoke(this, s);
             }
+            throw new NullReferenceException("Handler is null");
             
         }
 
@@ -400,7 +404,7 @@ namespace LibMandatory.Models
 
     }
 
-    public delegate void NotificationHandler(object sender, NotificationEventArg args);
+    
     
     
 }

@@ -9,5 +9,7 @@ namespace LibMandatory
     public class NotificationEventArg : EventArgs
     {
         public string Message { get; set; }
+
+
     }
 }

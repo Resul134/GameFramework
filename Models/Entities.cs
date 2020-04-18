@@ -104,7 +104,7 @@ namespace LibMandatory.Models
             Random rand = new Random();
             CreatureMoveRandom(world, Direction = (Direction) rand.Next(1, 4)); // or 0?
 
-            var weapons = world.weaponsList;
+            var weapons = world.WeaponsList;
             
                 foreach (var w in weapons)
                 {

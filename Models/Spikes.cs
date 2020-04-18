@@ -29,7 +29,7 @@ namespace LibMandatory.Models
         {
             if (player != null)
             {
-                foreach (var s in player.spikeList)
+                foreach (var s in player.SpikeList)
                 {
                     if (player.Player.FixedPositionX == FixedPositionX && player.Player.FixedPositionY == s.FixedPositionY)
                     {
