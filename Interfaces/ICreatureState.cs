@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibMandatory.States
+namespace LibMandatory.Interfaces
 {
-    public enum TypeOfAttack
+    interface ICreatureState
     {
-        Melee,
-        Ranged,
-        Magic
+
     }
 }

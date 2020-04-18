@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LibMandatory.AbstractClasses;
+using LibMandatory.Interfaces;
 using LibMandatory.Items;
 using LibMandatory.States;
 
@@ -81,11 +82,11 @@ namespace LibMandatory.Models
             return hitPoints;
         }
 
-        public void EquipWeapon(Weapon newGear)
+        public void EquipWeapon(IWeapon newGear)
         {
             if (newGear.Damage > Weapon.Damage)
             {
-                Weapon = newGear;
+                Weapon = (Weapon) newGear;
             }
         }
 
@@ -101,11 +102,13 @@ namespace LibMandatory.Models
 
         public bool MonsterInteractionsInWorldWeapons(World world)
         {
-            Random rand = new Random();
-            CreatureMoveRandom(world, Direction = (Direction) rand.Next(1, 4)); // or 0?
+            
+            CreatureMoveRandom(world, Direction = 0); // or 0?
 
             var weapons = world.WeaponsList;
-            
+
+            if (weapons != null)
+            {
                 foreach (var w in weapons)
                 {
                     var interact = world.CreatureList.Where(x =>
@@ -120,21 +123,26 @@ namespace LibMandatory.Models
 
                     //Use FirstOrDefault() when you know that you will need to check whether
                     //there was an element or not. In other words, if you know it is legal for the sequence to be empty, which can be possible.
-                    var weaponC = weapons.FirstOrDefault();
+                    IWeapon weaponC = weapons.FirstOrDefault();
 
 
-                    EquipWeapon(weaponC);
-                
+                    EquipWeapon((Weapon)weaponC);
+
                     world._notify("Succesful");
 
                     return true;
 
                 }
+            }
+
+            return false;
 
 
-                return false;
 
-            
+
+
+
+
 
         }
 
@@ -145,8 +153,7 @@ namespace LibMandatory.Models
                 creature.hitPoints = hpDemod;
                 creature.Weapon.Damage = hpDemod;
             }
-
-            Console.WriteLine("Creature is dead");
+            throw new ArgumentException("Creature is dead or doesn't exist");
             
             
 

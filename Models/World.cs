@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using LibMandatory.AbstractClasses;
+using LibMandatory.CreatureStates;
 using LibMandatory.Factories;
 using LibMandatory.Interfaces;
 using LibMandatory.Items;
@@ -22,7 +23,9 @@ namespace LibMandatory.Models
         public delegate void NotificationHandler(object sender, NotificationEventArg args);
         public int Height { get; set; }
         public int Width { get; set; }
+        public string Gameborder = "|-----------------------|";
         public HumanPlayer Player { get; set; }
+        
 
         public List<IWeapon> WeaponsList { get; set; }
         public WeaponFactory WeaponFactory = new WeaponFactory();
@@ -67,7 +70,7 @@ namespace LibMandatory.Models
 
 
             
-            Parallel.Invoke((() => new Thread(playerMovementHandler).Start() ));
+            Parallel.Invoke(() => new Thread(playerMovementHandler).Start()  );
                
             
 
@@ -78,8 +81,12 @@ namespace LibMandatory.Models
 
         private void MakeMap()
         {
-            char[,] playground = new char[Height, Width];
 
+            Console.Clear();
+            char[,] playground = new char[Height, Width];
+            
+
+            Console.WriteLine(Gameborder);
 
             for (int i = 0; i < Height; i++)
             {
@@ -131,12 +138,16 @@ namespace LibMandatory.Models
                         }
                     }
 
+                    Console.WriteLine($"|{playground[i,j]}|");
+
                    
 
                 }
 
                 
             }
+
+            Console.WriteLine(Gameborder);
 
             
         }
@@ -356,6 +367,19 @@ namespace LibMandatory.Models
             if (spikes != null)
             {
                 SpikeList.Remove(spikes);
+            }
+        }
+
+        public void AddDemon(ICreature creature)
+        {
+            CreautureStates state = new CreautureStates();
+            foreach (var c in CreatureList)
+            {
+                if (c.hitPoints > 160) 
+                {
+                    ICreature demon = state.Demon_If_Creature_Name_Demon(creature);
+                    CreatureList.Add(demon);
+                }
             }
         }
 

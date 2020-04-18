@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace LibMandatory.States
 {
-    public enum ArmorType
+    public enum TypeOfAttack
     {
-        Plate,
-        Cloth,
-        Leather
+        Melee,
+        Ranged,
+        Magic,
+        Demonic
     }
 }

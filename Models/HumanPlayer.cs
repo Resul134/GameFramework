@@ -5,6 +5,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using LibMandatory.AbstractClasses;
+using LibMandatory.Interfaces;
 using LibMandatory.Items;
 using LibMandatory.States;
 
@@ -20,7 +21,7 @@ namespace LibMandatory.Models
         }
 
         //Unfinished maybe convert method to bool, and check for if hitPoints under 0 return IsDead true?
-        public void AttackCreature(HumanPlayer player, EntityAbs entityOp)
+        public void AttackCreature(HumanPlayer player, ICreature entityOp)
         {
             while (entityOp.IsDead == false && player.IsDead == false)
             {
@@ -139,11 +140,11 @@ namespace LibMandatory.Models
 
         }
 
-        public void EquipWeapon(Weapon newGear)
+        public void EquipWeapon(IWeapon newGear)
         {
             if (newGear.Damage > Weapon.Damage)
             {
-                Weapon = newGear;
+                Weapon = (Weapon)newGear;
             }
         }
 
