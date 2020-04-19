@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LibMandatory.Interfaces;
+using LibMandatory.Items;
+using LibMandatory.Models;
 using LibMandatory.States;
 
 namespace LibMandatory.CreatureStates
@@ -11,29 +13,28 @@ namespace LibMandatory.CreatureStates
     public class CreautureStates
     {
         //Experimenting with states
-        public ICreature Demon_If_Creature_Name_Demon(ICreature Entity)
+        public ICreature Demon_If_Creature_Name_Demon(int positionX, int positionY)
         {
-            if (Entity.Description == "Demon")
-            {
-                
-                Entity.Weapon.TypeOfAttack = TypeOfAttack.Demonic;
-                Entity.ArmorType.TypeOfArmor = ArmorType.Demonic;
+            Weapon weapon = new Weapon(TypeOfAttack.Demonic, 300, "Demon", positionX,positionY);
+            Armor arm = new Armor(ArmorType.Demonic, "Demonic plate", 200, positionX,positionY);
 
-                if (Entity.Weapon.TypeOfAttack == TypeOfAttack.Demonic)
+           
+                ICreature creat = new Entities(positionX, positionY, weapon, arm, TypeOfAttack.Demonic, 400, "Demon");
+
+                if (creat.IsDead == false)
                 {
-                    Entity.Weapon.Damage = 500;
-                    Entity.ArmorType.Defense = 400;
-                    Entity.CurrentHealth = 300;
+                return creat;
+                }
 
+                
+            
                     
 
-
-                }
-            }
-            throw new ArgumentException("Entity is not dead");
+            
+            throw new NullReferenceException("Something went wrong");
         }
 
-
+        //Experiment
         public void If_Creature_Name_Resul(ICreature Entity)
         {
             if (Entity.Description == "Resul")
