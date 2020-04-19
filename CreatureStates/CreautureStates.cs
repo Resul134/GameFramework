@@ -44,5 +44,7 @@ namespace LibMandatory.CreatureStates
             }
             throw new ArgumentException("Entity was not named Resul");
         }
+
+       
     }
 }

@@ -370,14 +370,15 @@ namespace LibMandatory.Models
             }
         }
 
-        public void AddDemon(ICreature creature)
+        public void AddDemonForm()
         {
+            Random rand = new Random();
             CreautureStates state = new CreautureStates();
             foreach (var c in CreatureList)
             {
-                if (c.hitPoints > 160) 
+                if (c.Description == "Demon")
                 {
-                    ICreature demon = state.Demon_If_Creature_Name_Demon(creature);
+                    ICreature demon = state.Demon_If_Creature_Name_Demon(rand.Next(0,9),rand.Next(0,9));
                     CreatureList.Add(demon);
                 }
             }
