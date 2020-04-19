@@ -370,6 +370,21 @@ namespace LibMandatory.Models
             }
         }
 
+        public void HumanReactionOnMonster(Entities c)
+        {
+            if (c != null)
+            {
+                Player.AttackCreature(Player, c);
+            }
+            throw new NullReferenceException("Parameter is null");
+            
+        }
+
+        public void MonsterReactionOnHuman(World d, Entities c)
+        {
+            c.AttackPlayer(d);
+        }
+
         public void AddDemonForm()
         {
             Random rand = new Random();

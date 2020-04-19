@@ -23,22 +23,32 @@ namespace LibMandatory.Models
         //Unfinished maybe convert method to bool, and check for if hitPoints under 0 return IsDead true?
         public void AttackCreature(HumanPlayer player, ICreature entityOp)
         {
-            while (entityOp.IsDead == false && player.IsDead == false)
+            while (entityOp.IsDead == false && player.IsDead == false )
             {
-                //Depending on the units armor, the damage will either amplifiy or get a reduction
-                if (player.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Melee)
+                //New if statement, not sure if I'll keep it.
+                if (player.FixedPositionX == entityOp.FixedPositionX && player.FixedPositionY == entityOp.FixedPositionY)
                 {
-                     entityOp.CurrentHealth -= calcDamage(player.Weapon.Damage, TypeOfAttack.Melee);
+                    //Depending on the units armor, the damage will either amplifiy or get a reduction
+                    if (player.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Melee)
+                    {
+                        entityOp.CurrentHealth -= calcDamage(player.Weapon.Damage, TypeOfAttack.Melee);
+                        Console.WriteLine($"Monster has taken dmg!: {entityOp.CurrentHealth} hp left");
+                    }
+                    if (player.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Magic)
+                    {
+                        entityOp.CurrentHealth -= calcDamage(player.Weapon.Damage, TypeOfAttack.Magic);
+                        Console.WriteLine($"Monster has taken dmg!: {entityOp.CurrentHealth} hp left");
+                    }
+                    if (player.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Ranged)
+                    {
+                        entityOp.CurrentHealth -= calcDamage(player.Weapon.Damage, TypeOfAttack.Ranged);
+                        Console.WriteLine($"Monster has taken dmg!: {entityOp.CurrentHealth} hp left");
+                    }
 
+                    throw new ArgumentException("No interactions were possible");
                 }
-                if (player.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Magic)
-                {
-                    entityOp.CurrentHealth -= calcDamage(player.Weapon.Damage, TypeOfAttack.Magic);
-                }
-                if (player.Weapon.Damage < hitPoints && AttackType == TypeOfAttack.Ranged)
-                {
-                    entityOp.CurrentHealth -= calcDamage(player.Weapon.Damage, TypeOfAttack.Ranged);
-                }
+                throw new ArgumentException("Player did not encounter monster");
+                
             }
 
             

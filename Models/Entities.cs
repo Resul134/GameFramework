@@ -122,6 +122,8 @@ namespace LibMandatory.Models
 
         }
 
+       
+
         public bool MonsterInteractionsInWorldWeapons(World world)
         {
             
