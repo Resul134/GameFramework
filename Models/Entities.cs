@@ -18,7 +18,7 @@ namespace LibMandatory.Models
         {
             Direction = Direction.Up;
             IsDead = false;
-            Shield = new Shield();
+            ShieldF = new ShieldF();
 
             //Experiment
             if (AttackType == TypeOfAttack.Demonic)
@@ -96,7 +96,7 @@ namespace LibMandatory.Models
 
         public void EquipArmorAndShield(Armor armoor)
         {
-            Shield.DefenseModifier += armoor.Defense;
+            ShieldF.DefenseModifier += armoor.Defense;
 
             if (armoor != null)
             {
