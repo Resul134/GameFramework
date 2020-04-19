@@ -12,26 +12,21 @@ namespace LibMandatory.CreatureStates
 {
     public class CreautureStates
     {
-        //Experimenting with states
-        public ICreature Demon_If_Creature_Name_Demon(int positionX, int positionY)
+        
+        public ICreature SPawnDemon(int positionX, int positionY)
         {
-            Weapon weapon = new Weapon(TypeOfAttack.Demonic, 300, "Demon", positionX,positionY);
-            Armor arm = new Armor(ArmorType.Demonic, "Demonic plate", 200, positionX,positionY);
+            #region making objects for Demon
 
-           
-                ICreature creat = new Entities(positionX, positionY, weapon, arm, TypeOfAttack.Demonic, 400, "Demon");
+            Weapon weapon = new Weapon(TypeOfAttack.Demonic, 300, "Demon", positionX, positionY);
+            Armor arm = new Armor(ArmorType.Demonic, "Demonic plate", 200, positionX, positionY);
 
-                if (creat.IsDead == false)
-                {
-                return creat;
-                }
+            #endregion
+
+            ICreature creat = new Entities(positionX, positionY, weapon, arm, TypeOfAttack.Demonic, 400, "Demon");
 
                 
-            
-                    
+                return creat;
 
-            
-            throw new NullReferenceException("Something went wrong");
         }
 
         //Experiment

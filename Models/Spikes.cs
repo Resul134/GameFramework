@@ -33,7 +33,9 @@ namespace LibMandatory.Models
                 {
                     if (player.Player.FixedPositionX == FixedPositionX && player.Player.FixedPositionY == s.FixedPositionY)
                     {
-                        player.Player.CurrentHealth -= Damage;
+                        var damagetaken = player.Player.CurrentHealth -= Damage;
+
+                        Console.WriteLine($"You have taken damage!: {damagetaken} , this is your current hp." );
                     }
                 }
             }

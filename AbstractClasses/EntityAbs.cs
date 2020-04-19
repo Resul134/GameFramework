@@ -52,9 +52,11 @@ namespace LibMandatory.AbstractClasses
             FixedPositionX = fixedPositionX;
             FixedPositionY = fixedPositionY;
 
-            
 
+        }
 
+        public EntityAbs()
+        {
         }
 
       

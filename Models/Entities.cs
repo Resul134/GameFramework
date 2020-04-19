@@ -18,8 +18,19 @@ namespace LibMandatory.Models
         {
             Direction = Direction.Up;
             IsDead = false;
+
+            //Experiment
+            if (AttackType == TypeOfAttack.Demonic)
+            {
+                weaponCreature.Damage = DemonicDamage;
+            }
         }
-        
+
+        public double DemonicDamage
+        {
+            get { return Weapon.Damage + 500; }
+        }
+
 
 
 
