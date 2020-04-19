@@ -18,6 +18,7 @@ namespace LibMandatory.AbstractClasses
         public TypeOfAttack AttackType { get; set; }
         public Weapon Weapon { get; set; }
         public Armor ArmorType { get; set; }
+        public Shield Shield { get; set; }
         public Direction Direction { get; set; }
 
 
@@ -51,6 +52,8 @@ namespace LibMandatory.AbstractClasses
 
             FixedPositionX = fixedPositionX;
             FixedPositionY = fixedPositionY;
+
+            
 
 
         }

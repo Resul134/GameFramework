@@ -18,6 +18,7 @@ namespace LibMandatory.Models
         {
             Direction = Direction.Up;
             IsDead = false;
+            Shield = new Shield();
 
             //Experiment
             if (AttackType == TypeOfAttack.Demonic)
@@ -91,6 +92,16 @@ namespace LibMandatory.Models
             }
 
             return hitPoints;
+        }
+
+        public void EquipArmorAndShield(Armor armoor)
+        {
+            Shield.DefenseModifier += armoor.Defense;
+
+            if (armoor != null)
+            {
+                this.ArmorType = armoor;
+            }
         }
 
         public void EquipWeapon(IWeapon newGear)
