@@ -12,7 +12,7 @@ namespace LibMandatory.AbstractClasses
     public abstract class EntityAbs : ICreature
     {
 
- 
+        //Template class
         public string Description { get; set; }
         public double hitPoints { get; set; }
         public TypeOfAttack AttackType { get; set; }

@@ -39,7 +39,8 @@ namespace LibMandatory.Models
         public List<Potion> potionList { get; set; }
         public PotionFactory PotionFactory = new PotionFactory();
 
-
+        //Decorator? ICreate is called, it accepts the interface as an Entity class, because EntityAbs derives from ICreature, and 
+        //Weapon derives from EntityAbs
         public List<ICreature> CreatureList { get; set; }
         public CreatureFactory CreatureFactory  = new CreatureFactory();
 
@@ -370,7 +371,8 @@ namespace LibMandatory.Models
             }
         }
 
-        public void HumanReactionOnMonster(Entities c)
+        //Classic example of a decorator, could change ICreature to Entities.
+        public void HumanReactionOnMonster(ICreature c)
         {
             if (c != null)
             {

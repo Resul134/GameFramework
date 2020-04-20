@@ -14,6 +14,7 @@ namespace LibMandatory.Models
     {
         
         //Decorator pattern? Calls parent implementation, instead of calling wrapped object directly. Simplifies extension of decorators.
+        //Base.
         public Entities(int positionX, int positionY, Weapon weaponCreature, Armor armor, TypeOfAttack attackType, double hp, string name) : base(name, hp, weaponCreature, armor, positionX, positionY, attackType)
         {
             Direction = Direction.Up;
@@ -108,6 +109,9 @@ namespace LibMandatory.Models
             }
         }
 
+
+        //Decorator? IWeapon is called, it accepts the interface as a weapon class, because WeaponAbs derives from IWeapon, and 
+        //Weapon derives from WeaponAbs
         public void EquipWeapon(IWeapon newGear)
         {
             if (newGear.Damage > Weapon.Damage)
@@ -151,6 +155,7 @@ namespace LibMandatory.Models
 
                     //Use FirstOrDefault() when you know that you will need to check whether
                     //there was an element or not. In other words, if you know it is legal for the sequence to be empty, which can be possible.
+                    //Decorator
                     IWeapon weaponC = weapons.FirstOrDefault();
 
 

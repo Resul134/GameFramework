@@ -21,6 +21,7 @@ namespace LibMandatory.Models
         }
 
         //Unfinished maybe convert method to bool, and check for if hitPoints under 0 return IsDead true?
+        //Decorator, using ICreature as it is accepted as a class.
         public void AttackCreature(HumanPlayer player, ICreature entityOp)
         {
             while (entityOp.IsDead == false && player.IsDead == false )
