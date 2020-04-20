@@ -133,10 +133,10 @@ namespace LibMandatory.Models
         //Template method, all classes deriving for EntityAbs has access to its parent class
         public void WhatIsMyDmg(double dmg)
         {
-            WhatIsMyCreatureDamage(dmg);
+            WhatIsMyDamage(dmg);
         }
 
-       
+
 
         public bool MonsterInteractionsInWorldWeapons(World world)
         {
