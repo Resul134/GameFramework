@@ -65,11 +65,9 @@ namespace LibMandatory.AbstractClasses
         //Template method for classes deriving from this class. Template pattern ensures that the algorithm pattern doesn't get changed,
         //making the structure of the software more managable.
         //Abstract class => concrete class.
-        public void PrintCreatureDamage(out double dmg)
+        public void WhatIsMyCreatureDamage(double dmg)
         {
              dmg = Weapon.Damage;
-
-            AttackType = TypeOfAttack.Demonic;
 
              Console.WriteLine($"{dmg}");
         }

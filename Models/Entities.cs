@@ -24,8 +24,8 @@ namespace LibMandatory.Models
             //Experiment
             if (AttackType == TypeOfAttack.Demonic)
             {
-                var e = weaponCreature.Damage = DemonicDamage;
-                PrintCreatureDamage(out e);
+                weaponCreature.Damage = this.DemonicDamage;
+                
                 
             }
 
@@ -129,6 +129,11 @@ namespace LibMandatory.Models
             }
             Console.WriteLine("The item you're equipping has less defence");
 
+        }
+        //Template method, all classes deriving for EntityAbs has access to its parent class
+        public void WhatIsMyDmg(double dmg)
+        {
+            WhatIsMyCreatureDamage(dmg);
         }
 
        
