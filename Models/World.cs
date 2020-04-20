@@ -403,6 +403,17 @@ namespace LibMandatory.Models
             }
         }
 
+
+        public void WhatIsCreatureDmg()
+        {
+            var emmy = CreatureList.Select(x => x.Weapon.Damage);
+
+            foreach (var e in emmy)
+            {
+                Console.WriteLine($"All creatures dmg: {e}");
+            }
+        }
+
         public void SpikesEncounteredByPlayerDamage()
         {
             if (Player != null)

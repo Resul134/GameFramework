@@ -97,9 +97,9 @@ namespace LibMandatory.Models
         }
 
         //Template methode, proving that both human and entity has access to the method
-        public void WhatIsMyDmg(double dmg)
+        public void WhatIsMyDmg()
         {
-            WhatIsMyDmg(dmg);
+            PrintDamage();
         }
 
 

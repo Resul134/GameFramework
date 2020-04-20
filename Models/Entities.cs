@@ -131,9 +131,9 @@ namespace LibMandatory.Models
 
         }
         //Template method, all classes deriving for EntityAbs has access to its parent class
-        public void WhatIsMyDmg(double dmg)
+        public void WhatIsMyDmg()
         {
-            WhatIsMyDamage(dmg);
+            PrintDamage();
         }
 
 
