@@ -31,6 +31,7 @@ namespace LibMandatory.Models
 
             
         }
+       
 
         public double DemonicDamage
         {
