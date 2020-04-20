@@ -13,7 +13,7 @@ namespace LibMandatory.Models
     public class Entities : EntityAbs
     {
         
-
+        //Decorator pattern? Calls parent implementation, instead of calling wrapped object directly. Simplifies extension of decorators.
         public Entities(int positionX, int positionY, Weapon weaponCreature, Armor armor, TypeOfAttack attackType, double hp, string name) : base(name, hp, weaponCreature, armor, positionX, positionY, attackType)
         {
             Direction = Direction.Up;
@@ -23,8 +23,12 @@ namespace LibMandatory.Models
             //Experiment
             if (AttackType == TypeOfAttack.Demonic)
             {
-                weaponCreature.Damage = DemonicDamage;
+                var e = weaponCreature.Damage = DemonicDamage;
+                PrintCreatureDamage(out e);
+                
             }
+
+            
         }
 
         public double DemonicDamage
