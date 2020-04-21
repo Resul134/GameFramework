@@ -21,6 +21,7 @@ namespace LibMandatory.Factories
 
 
         //Decorator factory, if type equals ranged. Simpler way of returning an object, instead of user typing a millin parameters.
+        //Test
         public IWeapon makeBow(TypeOfAttack weaponType)
         {
             
